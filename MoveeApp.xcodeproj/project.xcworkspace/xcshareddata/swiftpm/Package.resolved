@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CYBase",
+        "repositoryURL": "https://github.com/canyoldas0/CYBase",
+        "state": {
+          "branch": "main",
+          "revision": "c81ae028e265142dcd97cf403df102896a96d1ca",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
