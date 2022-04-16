@@ -10,4 +10,10 @@ import Foundation
 class MoviesViewModel: BaseViewModel {
     
     
+    
+    
+    // MARK: -- Vertical TableView Methods
+    func getNumberOfRows() -> Int {
+        return 0
+    }
 }

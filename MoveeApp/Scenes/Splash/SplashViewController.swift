@@ -25,6 +25,14 @@ class SplashViewController: UIViewController {
         }
     }
     
+    private func startApp() {
+        let moviesVC = MainViewBuilder.build()
+        UIApplication.shared.windows.first?.rootViewController = moviesVC
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+
+
+    }
+    
     private func fireSplashViewAnimation() {
         self.bottomTextContraint.constant = 3
 
@@ -36,6 +44,8 @@ class SplashViewController: UIViewController {
             animations: {
             self.appLogoImageView.isHidden = false
             self.view.layoutIfNeeded()
-        })
+        }) { [weak self] _ in
+            self?.startApp()
+        }
     }
 }
