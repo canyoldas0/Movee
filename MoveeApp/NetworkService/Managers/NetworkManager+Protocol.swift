@@ -15,7 +15,7 @@ protocol NetworkManagerProtocol {
 
 class NetworkManager: NetworkManagerProtocol {
     
-//    static let shared = NetworkManager()
+    static let shared = NetworkManager()
     
     private let session: URLSession
     private var jsonDecoder = JSONDecoder()

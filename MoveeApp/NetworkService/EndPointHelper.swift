@@ -16,7 +16,7 @@ typealias Path = EndpointHelper.Paths
 enum EndpointHelper {
     
     enum BaseUrls: String {
-        case base = "https://wft-geo-db.p.rapidapi.com/v1/geo/"
+        case base = "https://api.themoviedb.org/3/"
     }
     
     enum Paths: CYValueProtocol {
@@ -25,18 +25,17 @@ enum EndpointHelper {
         
         var value: String {
             switch self {
-//            case .countryList:
-//                return "countries"
-//            case .countryDetail(let id):
-//                return "countries/\(id)"
- 
+            case .popularMovies:
+                return "movie/popular"
+            case .nowPlayingMovies:
+                return "movie/now_playing"
             }
         }
         
-//        case countryList
-//        case countryDetail(String)
-        //case auth
-
+        case popularMovies
+        case nowPlayingMovies
     }
-   
 }
+   
+
+

@@ -1,19 +1,26 @@
 //
-//  VeritalScrollCollectionViewCell.swift
+//  VerticalScrollCollectionViewCell.swift
 //  MoveeApp
 //
-//  Created by Can Yoldaş on 16.04.2022.
+//  Created by Can Yoldaş on 17.04.2022.
 //
 
 import UIKit
+import Network
 
 class VerticalScrollCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var imageView: UIImageView!
+    
+    
+    @IBOutlet weak var cardImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = 8
     }
 
 }

@@ -10,7 +10,8 @@ import UIKit
 class MainViewBuilder {
     
     class func build() -> UIViewController {
-        let viewModel = MoviesViewModel(networkService: NetworkManager())
+        let dataFormatter = MoviesDataFormatter()
+        let viewModel = MoviesViewModel(networkManager: MoviesNetworkManager(), dataFormatter: dataFormatter)
         let viewController = MoviesViewController(viewModel: viewModel)
         return viewController
     }

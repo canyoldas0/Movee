@@ -24,6 +24,8 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
+//        listenViewModel()
+//        viewModel.getPopularMoviesData()
     }
     
     private func setTableView() {
@@ -31,6 +33,18 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
         tableView.dataSource = self
         tableView.registerNib(withIdentifier: HeaderMoviesTableViewCell.identifier)
         tableView.registerNib(withIdentifier: ListTableViewCell.identifier)
+    }
+    
+    private func listenViewModel() {
+        
+        viewModel.subscribePopularList { [weak self] state in
+            switch state {
+            case .done:
+                self?.tableView.reloadData()
+            default:
+                break
+            }
+        }
     }
 }
 
@@ -68,4 +82,19 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let section = tableViewSections[indexPath.section]
+        
+        switch section {
+            
+        case .horizontalCollectionView:
+            return 600
+        case .verticalTableView:
+            return 140
+            
+        }
+    }
+
 }

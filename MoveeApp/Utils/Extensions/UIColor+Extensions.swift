@@ -16,4 +16,8 @@ extension UIColor {
     class var moveeBlue: UIColor {
         return UIColor(red: 0.00, green: 0.24, blue: 1.00, alpha: 1.00)
     }
+    
+    class var moveeWhite: UIColor {
+        return .white
+    }
 }
