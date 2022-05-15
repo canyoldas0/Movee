@@ -9,42 +9,26 @@ import UIKit
 
 class HeaderMoviesTableViewCell: UITableViewCell {
 
-    private lazy var collectionView: UICollectionView = {
-       let layout = CardFlowLayout()
-        layout.sectionInset = .init(top: 0, left: 58, bottom: 0, right: 20)
-        layout.minimumLineSpacing = 20
-        layout.itemSize = .init(width: 260, height: 373)
-        layout.scrollDirection = .horizontal
-        
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.showsHorizontalScrollIndicator = false
-        collection.decelerationRate = .fast
-        collection.dataSource = self
-        collection.backgroundColor = .clear
-        collection.delegate = self
-        collection.register(UINib(nibName: VerticalScrollCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: VerticalScrollCollectionViewCell.identifier)
-        return collection
-    }()
+    @IBOutlet weak var scoreView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var categoriesLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollectionView()
+        scoreView.layer.cornerRadius = scoreView.height / 2
     }
     
-    
-
     private func setupCollectionView() {
-        contentView.addSubview(collectionView)
-        
-        NSLayoutConstraint.activate([
-        
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        ])
-    }
+                collectionView.register(UINib(nibName: VerticalScrollCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: VerticalScrollCollectionViewCell.identifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+
+}
+    
 }
 
 extension HeaderMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -59,6 +43,9 @@ extension HeaderMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalScrollCollectionViewCell.identifier, for: indexPath)
+        self.scoreLabel.text = "8.3"
+        self.titleLabel.text = "Batman"
+        self.categoriesLabel.text = "Comedy, Action"
         cell.clipsToBounds = true
         return cell
     }

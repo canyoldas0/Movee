@@ -13,6 +13,10 @@ class MainViewBuilder {
         let dataFormatter = MoviesDataFormatter()
         let viewModel = MoviesViewModel(networkManager: MoviesNetworkManager(), dataFormatter: dataFormatter)
         let viewController = MoviesViewController(viewModel: viewModel)
-        return viewController
+        viewController.title = "Movies"
+        let navigationVC = UINavigationController(rootViewController: viewController)
+        navigationVC.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+        navigationVC.navigationBar.prefersLargeTitles = true
+        return navigationVC
     }
 }

@@ -17,15 +17,18 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
     }
 
     @IBOutlet weak var tableView: UITableView!
-    
+    let searchController = UISearchController(searchResultsController: nil)
+
     
     private let tableViewSections: [MoviesTableViewSection] = [.horizontalCollectionView, .verticalTableView]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         setTableView()
-//        listenViewModel()
-//        viewModel.getPopularMoviesData()
+        viewModel.getPopularMoviesData()
+        navigationController?.navigationBar.backgroundColor = .moveeBlue
+
     }
     
     private func setTableView() {
@@ -62,7 +65,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         case .horizontalCollectionView:
             return 1
         case .verticalTableView:
-            return 3
+            return 20
        
         }
     }
@@ -83,6 +86,8 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let section = tableViewSections[indexPath.section]
@@ -90,7 +95,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
             
         case .horizontalCollectionView:
-            return 600
+            return 500
         case .verticalTableView:
             return 140
             

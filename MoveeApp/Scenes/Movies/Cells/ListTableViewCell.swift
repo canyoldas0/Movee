@@ -63,7 +63,7 @@ class ListTableViewCell: UITableViewCell {
         if shadowLayer == nil {
                 shadowLayer = CAShapeLayer()
               
-            shadowLayer.path = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: 8).cgPath
+            shadowLayer.path = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: 8).cgPath
             shadowLayer.fillColor = UIColor.moveeWhite.cgColor
 
                 shadowLayer.shadowColor = UIColor.black.cgColor
@@ -74,6 +74,7 @@ class ListTableViewCell: UITableViewCell {
 
             containerView.layer.insertSublayer(shadowLayer, at: 0)
             }
+        containerView.clipsToBounds = true
     }
     
     func setData(with data: ListTableViewCellData) {

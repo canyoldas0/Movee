@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum MovieListViewState {
     
     case loading
@@ -53,8 +52,7 @@ class MoviesViewModel {
             
             switch response {
             case .success(let response):
-                return
-//                strongSelf.handlePopularMoviesResponse(response: response)
+                strongSelf.handlePopularMoviesResponse(response: response)
             case .failure(let errorModel):
                 strongSelf.popularMoviesState?(.failure(errorModel))
             }
@@ -63,8 +61,10 @@ class MoviesViewModel {
     
     
     private func handlePopularMoviesResponse(response: MovieListDataResponse) {
-        dataFormatter?.setData(with: response)
+//        dataFormatter?.setData(with: response)
         popularMoviesState?(.done)
+        print("RESULT: \(response.results.count)")
+        print("RESULT: \(response.results[0].title ?? "")")
     }
     
     

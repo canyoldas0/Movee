@@ -12,9 +12,17 @@ class CardFlowLayout: UICollectionViewFlowLayout {
     var theVelocityThresholdPerPage: CGFloat = 2
     var numOfItemsPerPage: CGFloat = 1
     
+    override func prepare() {
+        super.prepare()
+        self.scrollDirection = .horizontal
+        self.sectionInset = .init(top: 0, left: 58, bottom: 0, right: 58)
+        self.minimumLineSpacing = 20
+        self.itemSize = .init(width: 260, height: 373)
+    }
+    
+  
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         guard let collectionView = collectionView else { return proposedContentOffset }
-        
         let pageLength: CGFloat
         let approxPage: CGFloat
         let currentPage: CGFloat

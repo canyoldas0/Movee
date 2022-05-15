@@ -1,24 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="600" id="KGk-i7-Jjw" customClass="HeaderMoviesTableViewCell" customModule="MoveeApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="505" id="KGk-i7-Jjw" customClass="HeaderMoviesTableViewCell" customModule="MoveeApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="505"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="505"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJ3-8U-bn4">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
+                        <color key="backgroundColor" name="moveeBlue"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="sbL-LA-X38"/>
+                        </constraints>
+                    </view>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vjA-oS-M6W">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="373"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="373" id="WVU-NY-eS7"/>
+                        </constraints>
+                        <collectionViewLayout key="collectionViewLayout" id="eEj-O3-w5k" customClass="CardFlowLayout" customModule="MoveeApp" customModuleProvider="target"/>
+                    </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crime, Drama, Thriller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wd3-OY-UiT">
+                        <rect key="frame" x="44" y="454" width="150" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.031372549020000001" green="0.035000000150000002" blue="0.039000000799999997" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GZ-MC-1f7" userLabel="TitleLabel">
+                        <rect key="frame" x="44" y="425" width="53" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" name="moveeBlack"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u16-OF-tnY" userLabel="ScoreView">
+                        <rect key="frame" x="44" y="393" width="55" height="22"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="Zge-oQ-OOC">
+                                <rect key="frame" x="10" y="5" width="13" height="13"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="13" id="b8L-Eg-qa2"/>
+                                    <constraint firstAttribute="height" constant="13" id="n0Q-om-qPX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cna-yh-gkQ">
+                                <rect key="frame" x="28" y="5" width="19" height="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="moveeBlue"/>
+                        <constraints>
+                            <constraint firstItem="Cna-yh-gkQ" firstAttribute="top" secondItem="u16-OF-tnY" secondAttribute="top" constant="5" id="1bA-4t-20x"/>
+                            <constraint firstItem="Zge-oQ-OOC" firstAttribute="top" secondItem="u16-OF-tnY" secondAttribute="top" constant="5" id="EpZ-0f-NH5"/>
+                            <constraint firstAttribute="width" constant="55" id="Iau-9t-c9d"/>
+                            <constraint firstItem="Zge-oQ-OOC" firstAttribute="leading" secondItem="u16-OF-tnY" secondAttribute="leading" constant="10" id="eUQ-QA-Hdd"/>
+                            <constraint firstAttribute="height" constant="22" id="ihZ-L9-W6M"/>
+                            <constraint firstItem="Cna-yh-gkQ" firstAttribute="leading" secondItem="Zge-oQ-OOC" secondAttribute="trailing" constant="5" id="naI-RV-ScI"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vjA-oS-M6W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0Ix-Zs-cb6"/>
+                    <constraint firstItem="6GZ-MC-1f7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="24" id="7EC-4i-aFS"/>
+                    <constraint firstAttribute="trailing" secondItem="vjA-oS-M6W" secondAttribute="trailing" id="Sy6-mg-GCX"/>
+                    <constraint firstItem="aJ3-8U-bn4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TKr-MB-unt"/>
+                    <constraint firstItem="aJ3-8U-bn4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YSJ-d4-4S7"/>
+                    <constraint firstItem="6GZ-MC-1f7" firstAttribute="top" secondItem="u16-OF-tnY" secondAttribute="bottom" constant="10" id="b4q-Ai-XNQ"/>
+                    <constraint firstItem="Wd3-OY-UiT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="24" id="cLK-Dz-a3q"/>
+                    <constraint firstItem="u16-OF-tnY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="24" id="k0b-Sm-488"/>
+                    <constraint firstItem="u16-OF-tnY" firstAttribute="top" secondItem="vjA-oS-M6W" secondAttribute="bottom" constant="20" id="klN-bs-ats"/>
+                    <constraint firstItem="Wd3-OY-UiT" firstAttribute="top" secondItem="6GZ-MC-1f7" secondAttribute="bottom" constant="5" id="mns-Ny-jVh"/>
+                    <constraint firstAttribute="trailing" secondItem="aJ3-8U-bn4" secondAttribute="trailing" id="pke-M8-9oi"/>
+                    <constraint firstItem="vjA-oS-M6W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sAW-CA-cVn"/>
+                    <constraint firstItem="Wd3-OY-UiT" firstAttribute="top" secondItem="6GZ-MC-1f7" secondAttribute="bottom" constant="5" id="tuf-Ld-eta"/>
+                </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <point key="canvasLocation" x="354.34782608695656" y="325.44642857142856"/>
+            <connections>
+                <outlet property="categoriesLabel" destination="Wd3-OY-UiT" id="rmR-Ns-xHx"/>
+                <outlet property="collectionView" destination="vjA-oS-M6W" id="u6K-eV-QkV"/>
+                <outlet property="scoreLabel" destination="Cna-yh-gkQ" id="PA9-bt-nRA"/>
+                <outlet property="scoreView" destination="u16-OF-tnY" id="EDr-dt-OYa"/>
+                <outlet property="titleLabel" destination="6GZ-MC-1f7" id="JTa-y4-2r0"/>
+            </connections>
+            <point key="canvasLocation" x="353.62318840579712" y="293.63839285714283"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="star" width="13" height="13"/>
+        <namedColor name="moveeBlack">
+            <color red="0.030999999493360519" green="0.035000000149011612" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="moveeBlue">
+            <color red="0.0" green="0.23899999260902405" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
