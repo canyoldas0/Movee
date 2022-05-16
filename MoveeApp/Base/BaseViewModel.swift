@@ -10,11 +10,11 @@ import Foundation
 class BaseViewModel {
     
     // MARK: -- Properties
-    let networkService: NetworkManagerProtocol
+//    let networkService: NetworkManagerProtocol
     
-    init(networkService: NetworkManagerProtocol) {
-        self.networkService = networkService
-    }
+//    init(networkService: NetworkManagerProtocol) {
+//        self.networkService = networkService
+//    }
     
     
 }

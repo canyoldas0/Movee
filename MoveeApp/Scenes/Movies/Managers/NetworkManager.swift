@@ -9,16 +9,16 @@ import Foundation
 
 protocol MoviesNetworkManagerProtocol: AnyObject {
     
-    func getPopularMovies(with request: URLRequest, with completion: @escaping MovieListResponseBlock)
+//    func getPopularMovies(with request: URLRequest, with completion: @escaping MovieListResponseBlock)
 }
 
 class MoviesNetworkManager: MoviesNetworkManagerProtocol {
     
-    let networkService = NetworkManager.shared
+//    let networkService = NetworkManager.shared
     
-    func getPopularMovies(with request: URLRequest, with completion: @escaping MovieListResponseBlock) {
-        networkService.sendRequest(urlRequest: request, completion: completion)
-    }
+//    func getPopularMovies(with request: URLRequest, with completion: @escaping MovieListResponseBlock) {
+//        networkService.sendRequest(urlRequest: request, completion: completion)
+//    }
 }
 
 

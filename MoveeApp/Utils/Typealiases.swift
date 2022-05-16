@@ -9,4 +9,3 @@ import Foundation
 
 typealias VoidBlock = () -> Void
 typealias MovieListViewStateBlock = (MovieListViewState) -> Void
-typealias MovieListResponseBlock = (Result<MovieListDataResponse, ErrorResponse>) -> Void

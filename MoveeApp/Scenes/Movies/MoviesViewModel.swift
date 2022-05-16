@@ -11,7 +11,7 @@ enum MovieListViewState {
     
     case loading
     case done
-    case failure(ErrorResponse)
+    case failure
     
 }
 
@@ -32,31 +32,11 @@ class MoviesViewModel {
     }
     
     func getPopularMoviesData() {
-        guard let urlRequest = try? PopularMovieListProvider(request: PopularMovieListDataRequest()).returnUrlRequest() else { return }
-        networkManager?.getPopularMovies(with: urlRequest) { [weak self] response in
-            guard let strongSelf = self else { return }
-            
-            switch response {
-            case .success(let response):
-                strongSelf.handlePopularMoviesResponse(response: response)
-            case .failure(let errorModel):
-                strongSelf.popularMoviesState?(.failure(errorModel))
-            }
-        }
+       
     }
     
     func getNowPlayingMoviesData() {
-        guard let urlRequest = try? NowPlayingMovieListProvider(request: NowPlayingMovieListRequest()).returnUrlRequest() else { return }
-        networkManager?.getPopularMovies(with: urlRequest) { [weak self] response in
-            guard let strongSelf = self else { return }
-            
-            switch response {
-            case .success(let response):
-                strongSelf.handlePopularMoviesResponse(response: response)
-            case .failure(let errorModel):
-                strongSelf.popularMoviesState?(.failure(errorModel))
-            }
-        }
+      
     }
     
     
