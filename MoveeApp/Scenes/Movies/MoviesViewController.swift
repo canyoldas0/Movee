@@ -26,9 +26,10 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         setTableView()
-        viewModel.getPopularMoviesData()
+        viewModel.fetchData()
+        view.backgroundColor = .moveeBlue
         navigationController?.navigationBar.backgroundColor = .moveeBlue
-
+        listenViewModel()
     }
     
     private func setTableView() {
@@ -65,7 +66,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         case .horizontalCollectionView:
             return 1
         case .verticalTableView:
-            return 20
+            return viewModel.popularMovies.count
        
         }
     }
@@ -78,10 +79,11 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .horizontalCollectionView:
             let cell = HeaderMoviesTableViewCell.dequeue(fromTableView: tableView, atIndexPath: indexPath)
+            cell.setData(from: viewModel.topRatedMovies)
             return cell
         case .verticalTableView:
             let cell = ListTableViewCell.dequeue(fromTableView: tableView, atIndexPath: indexPath)
-            cell.setData(with: ListTableViewCellData(title: "Joker", categories: "Comedy", date: nil, score: "8.9", imageUrl: nil))
+            cell.setData(with: ListTableViewCellData(movie: viewModel.getItem(at: indexPath.row)))
             return cell
         }
     }

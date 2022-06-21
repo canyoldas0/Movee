@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSd-t0-UAk" userLabel="backgroundView">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSd-t0-UAk" userLabel="backgroundView">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                     <color key="backgroundColor" name="moveeBlue"/>
                     <constraints>

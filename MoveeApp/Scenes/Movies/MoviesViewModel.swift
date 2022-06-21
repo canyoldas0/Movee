@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum MovieListViewState {
     
@@ -16,35 +17,39 @@ enum MovieListViewState {
 }
 
 class MoviesViewModel {
- 
-    let networkManager: MoviesNetworkManagerProtocol?
-    private var popularMoviesState: MovieListViewStateBlock?
-    weak var dataFormatter: MoviesDataFormatterProtocol?
     
-    init(networkManager: MoviesNetworkManagerProtocol?, dataFormatter: MoviesDataFormatterProtocol) {
-        self.networkManager = networkManager
-        self.dataFormatter = dataFormatter
+    private let moviesAPI: MoviesNetworkProtocol
+    private var moviesState: MovieListViewStateBlock?
+    private var cancellables =  Set<AnyCancellable>()
+    
+    var popularMovies = [Movie]()
+    var topRatedMovies = [Movie]()
+    
+    init(moviesAPI: MoviesNetworkProtocol = MoviesAPI()) {
+        self.moviesAPI = moviesAPI
     }
     
     // MARK: --  MovieList Methods
     func subscribePopularList(completion: @escaping MovieListViewStateBlock) {
-        popularMoviesState = completion
+        moviesState = completion
     }
     
-    func getPopularMoviesData() {
-       
-    }
-    
-    func getNowPlayingMoviesData() {
-      
-    }
-    
-    
-    private func handlePopularMoviesResponse(response: MovieListDataResponse) {
-//        dataFormatter?.setData(with: response)
-        popularMoviesState?(.done)
-        print("RESULT: \(response.results.count)")
-        print("RESULT: \(response.results[0].title ?? "")")
+    func fetchData() {
+        let popularMoviesPublisher = moviesAPI.getPopularMovies()
+        let topRatedMoviesPublisher = moviesAPI.getTopRatedMovies()
+        
+        popularMoviesPublisher
+            .zip(topRatedMoviesPublisher)
+            .handleEvents( receiveOutput: { (topRatedResponse, popularResponse) in
+                self.popularMovies = popularResponse.results
+                self.topRatedMovies = topRatedResponse.results
+                print("popular movies \(popularResponse)")
+                print("top rated \(topRatedResponse)")
+                self.moviesState?(.done)
+            }, receiveCompletion: { _ in })
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { _ in })
+            .store(in: &cancellables)
     }
     
     
@@ -52,5 +57,9 @@ class MoviesViewModel {
     // MARK: -- Vertical TableView Methods
     func getNumberOfRows() -> Int {
         return 0
+    }
+    
+    func getItem(at index: Int) -> Movie {
+        return popularMovies[index]
     }
 }

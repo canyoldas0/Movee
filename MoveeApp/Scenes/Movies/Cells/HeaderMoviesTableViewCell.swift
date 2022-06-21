@@ -8,12 +8,14 @@
 import UIKit
 
 class HeaderMoviesTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var scoreView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoriesLabel: UILabel!
+    
+    private var  movies: [Movie]?
     
     
     override func awakeFromNib() {
@@ -23,12 +25,27 @@ class HeaderMoviesTableViewCell: UITableViewCell {
     }
     
     private func setupCollectionView() {
-                collectionView.register(UINib(nibName: VerticalScrollCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: VerticalScrollCollectionViewCell.identifier)
+        collectionView.register(UINib(nibName: HorizontalScrollCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: HorizontalScrollCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-
-}
+    }
     
+    func setData(from data: [Movie]) {
+        self.movies = data
+        guard movies?.count != 0 else {return}
+        self.setHeaderData(at: 0)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+           
+        }
+    }
+    
+    private func setHeaderData(at index: Int) {
+        self.scoreLabel.text = "\(movies?[index].voteAverage ?? 0)"
+        self.titleLabel.text = movies?[index].originalTitle
+        self.categoriesLabel.text = "Comedy, Action"
+    }
+
 }
 
 extension HeaderMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -38,16 +55,27 @@ extension HeaderMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return movies?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VerticalScrollCollectionViewCell.identifier, for: indexPath)
-        self.scoreLabel.text = "8.3"
-        self.titleLabel.text = "Batman"
-        self.categoriesLabel.text = "Comedy, Action"
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalScrollCollectionViewCell.identifier, for: indexPath) as? HorizontalScrollCollectionViewCell else {return UICollectionViewCell() }
+        cell.setImageData(with: movies?[indexPath.row].imageUrl)
         cell.clipsToBounds = true
         return cell
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        var visibleRect = CGRect()
+        
+        visibleRect.origin = collectionView.contentOffset
+        visibleRect.size = collectionView.bounds.size
+        
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        
+        guard let indexPath = collectionView.indexPathForItem(at: visiblePoint) else { return }
+        
+        setHeaderData(at: indexPath.row)
     }
 }
 
@@ -59,6 +87,4 @@ extension HeaderMoviesTableViewCell: UICollectionViewDelegateFlowLayout {
         return CGSize(width: 260, height: 373)
         
     }
-    
-    
 }

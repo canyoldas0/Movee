@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import Network
+import Kingfisher
 
-class VerticalScrollCollectionViewCell: UICollectionViewCell {
+class HorizontalScrollCollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var cardImageView: UIImageView!
@@ -17,10 +17,14 @@ class VerticalScrollCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = 8
+    }
+    
+    func setImageData(with string: String?) {
+        guard let string = string, let url = URL(string: string) else {return }
+        cardImageView.kf.setImage(with: url)
     }
 
 }

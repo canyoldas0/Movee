@@ -10,8 +10,7 @@ import UIKit
 class MainViewBuilder {
     
     class func build() -> UIViewController {
-        let dataFormatter = MoviesDataFormatter()
-        let viewModel = MoviesViewModel(networkManager: MoviesNetworkManager(), dataFormatter: dataFormatter)
+        let viewModel = MoviesViewModel()
         let viewController = MoviesViewController(viewModel: viewModel)
         viewController.title = "Movies"
         let navigationVC = UINavigationController(rootViewController: viewController)

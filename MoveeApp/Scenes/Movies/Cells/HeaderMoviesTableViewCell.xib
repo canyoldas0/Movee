@@ -37,8 +37,8 @@
                         <color key="textColor" red="0.031372549020000001" green="0.035000000150000002" blue="0.039000000799999997" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GZ-MC-1f7" userLabel="TitleLabel">
-                        <rect key="frame" x="44" y="425" width="53" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GZ-MC-1f7" userLabel="TitleLabel">
+                        <rect key="frame" x="44" y="425" width="321" height="24"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <color key="textColor" name="moveeBlack"/>
                         <nil key="highlightedColor"/>
@@ -74,6 +74,7 @@
                 <constraints>
                     <constraint firstItem="vjA-oS-M6W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0Ix-Zs-cb6"/>
                     <constraint firstItem="6GZ-MC-1f7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="24" id="7EC-4i-aFS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6GZ-MC-1f7" secondAttribute="trailing" constant="15" id="G2S-9b-1ks"/>
                     <constraint firstAttribute="trailing" secondItem="vjA-oS-M6W" secondAttribute="trailing" id="Sy6-mg-GCX"/>
                     <constraint firstItem="aJ3-8U-bn4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TKr-MB-unt"/>
                     <constraint firstItem="aJ3-8U-bn4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YSJ-d4-4S7"/>

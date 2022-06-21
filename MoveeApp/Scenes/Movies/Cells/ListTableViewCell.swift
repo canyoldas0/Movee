@@ -44,7 +44,7 @@ class ListTableViewCell: UITableViewCell {
         }
         
         if let score = data.score {
-            scoreLabel.text = score
+            scoreLabel.text = "\(score)"
         }
         
         if let urlString = data.imageUrl,
@@ -52,7 +52,7 @@ class ListTableViewCell: UITableViewCell {
             itemImageView.kf.setImage(with: imageUrl, placeholder: nil, options: nil, completionHandler: nil)
         }
         
-        if let dateString = data.date?.formatDateWith(format: .ddMMyyyy) {
+        if let dateString = data.date {
             dateLabel.text = dateString
         }
     }
