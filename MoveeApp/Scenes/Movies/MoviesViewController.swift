@@ -21,6 +21,7 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         setTableView()
         listenViewModel()

@@ -74,7 +74,10 @@ class ListTableViewCell: UITableViewCell {
             
             containerView.layer.insertSublayer(shadowLayer, at: 0)
         }
-        let margins = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 30)
+        let margins = UIEdgeInsets(top: 20,
+                                   left: 24,
+                                   bottom: 0,
+                                   right: 24)
         contentView.frame = contentView.frame.inset(by: margins)
         containerView.clipsToBounds = true
     }
