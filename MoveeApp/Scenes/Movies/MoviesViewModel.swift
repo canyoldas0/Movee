@@ -16,7 +16,7 @@ enum MovieListViewState {
     
 }
 
-class MoviesViewModel {
+final class MoviesViewModel {
     
     private let moviesAPI: MoviesNetworkProtocol
     private var moviesState: MovieListViewStateBlock?
@@ -43,8 +43,6 @@ class MoviesViewModel {
             .handleEvents( receiveOutput: { (topRatedResponse, popularResponse) in
                 self.popularMovies = popularResponse.results
                 self.topRatedMovies = topRatedResponse.results
-                print("popular movies \(popularResponse)")
-                print("top rated \(topRatedResponse)")
                 self.moviesState?(.done)
             }, receiveCompletion: { _ in })
             .sink(receiveCompletion: { _ in },
@@ -56,7 +54,7 @@ class MoviesViewModel {
     
     // MARK: -- Vertical TableView Methods
     func getNumberOfRows() -> Int {
-        return 0
+        return popularMovies.count
     }
     
     func getItem(at index: Int) -> Movie {

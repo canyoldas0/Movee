@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol HeaderCellActionDelegate: AnyObject {
+    func pushDetailView(with id: Int)
+}
+
 class HeaderMoviesTableViewCell: UITableViewCell {
+    
+    weak var delegate: HeaderCellActionDelegate?
     
     @IBOutlet weak var scoreView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -16,7 +22,6 @@ class HeaderMoviesTableViewCell: UITableViewCell {
     @IBOutlet weak var categoriesLabel: UILabel!
     
     private var  movies: [Movie]?
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,6 +68,16 @@ extension HeaderMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewD
         cell.setImageData(with: movies?[indexPath.row].imageUrl)
         cell.clipsToBounds = true
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.startTappedAnimation(with: { [weak self] finish in
+            if finish {
+//                delegate?.pushDetailView(with: )
+            }
+        })
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

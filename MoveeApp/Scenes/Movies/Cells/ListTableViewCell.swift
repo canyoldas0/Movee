@@ -48,7 +48,7 @@ class ListTableViewCell: UITableViewCell {
         }
         
         if let urlString = data.imageUrl,
-            let imageUrl = URL(string: urlString) {
+           let imageUrl = URL(string: urlString) {
             itemImageView.kf.setImage(with: imageUrl, placeholder: nil, options: nil, completionHandler: nil)
         }
         
@@ -61,19 +61,21 @@ class ListTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         if shadowLayer == nil {
-                shadowLayer = CAShapeLayer()
-              
+            shadowLayer = CAShapeLayer()
+            
             shadowLayer.path = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: 8).cgPath
             shadowLayer.fillColor = UIColor.moveeWhite.cgColor
-
-                shadowLayer.shadowColor = UIColor.black.cgColor
-                shadowLayer.shadowPath = shadowLayer.path
-                shadowLayer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-                shadowLayer.shadowOpacity = 0.2
-                shadowLayer.shadowRadius = 3
-
+            
+            shadowLayer.shadowColor = UIColor.black.cgColor
+            shadowLayer.shadowPath = shadowLayer.path
+            shadowLayer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+            shadowLayer.shadowOpacity = 0.2
+            shadowLayer.shadowRadius = 3
+            
             containerView.layer.insertSublayer(shadowLayer, at: 0)
-            }
+        }
+        let margins = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 30)
+        contentView.frame = contentView.frame.inset(by: margins)
         containerView.clipsToBounds = true
     }
     

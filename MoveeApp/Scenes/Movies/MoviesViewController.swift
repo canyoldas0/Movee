@@ -11,30 +11,29 @@ import CYBase
 class MoviesViewController: CYViewController<MoviesViewModel> {
     
     enum MoviesTableViewSection {
-        
         case horizontalCollectionView
-        case verticalTableView
+        case tableView
     }
-
-    @IBOutlet weak var tableView: UITableView!
-    let searchController = UISearchController(searchResultsController: nil)
-
     
-    private let tableViewSections: [MoviesTableViewSection] = [.horizontalCollectionView, .verticalTableView]
+    @IBOutlet weak var tableView: UITableView!
+    
+    private let tableViewSections: [MoviesTableViewSection] = [.horizontalCollectionView, .tableView]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         setTableView()
+        listenViewModel()
         viewModel.fetchData()
         view.backgroundColor = .moveeBlue
         navigationController?.navigationBar.backgroundColor = .moveeBlue
-        listenViewModel()
     }
     
     private func setTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .moveeBackground
+        tableView.allowsSelection = true
         tableView.registerNib(withIdentifier: HeaderMoviesTableViewCell.identifier)
         tableView.registerNib(withIdentifier: ListTableViewCell.identifier)
     }
@@ -49,6 +48,10 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
                 break
             }
         }
+    }
+    
+    private func fireDetailView(with id: Int) {
+        
     }
 }
 
@@ -65,9 +68,8 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .horizontalCollectionView:
             return 1
-        case .verticalTableView:
-            return viewModel.popularMovies.count
-       
+        case .tableView:
+            return viewModel.getNumberOfRows()
         }
     }
     
@@ -81,14 +83,24 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = HeaderMoviesTableViewCell.dequeue(fromTableView: tableView, atIndexPath: indexPath)
             cell.setData(from: viewModel.topRatedMovies)
             return cell
-        case .verticalTableView:
+        case .tableView:
             let cell = ListTableViewCell.dequeue(fromTableView: tableView, atIndexPath: indexPath)
             cell.setData(with: ListTableViewCellData(movie: viewModel.getItem(at: indexPath.row)))
             return cell
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else {return}
+        
+        guard let id = viewModel.getItem(at: indexPath.row).id else { return}
+        
+        cell.startTappedAnimation { [weak self] finish in
+            if finish {
+                self?.fireDetailView(with: id)
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -98,10 +110,8 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .horizontalCollectionView:
             return 500
-        case .verticalTableView:
+        case .tableView:
             return 140
-            
         }
     }
-
 }

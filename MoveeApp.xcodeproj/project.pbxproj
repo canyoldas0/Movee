@@ -222,6 +222,7 @@
 		1E07117028078194001012B6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1E9FA2A32862698F00D5D200 /* Detail */,
 				1E071174280781CA001012B6 /* Splash */,
 				1E071173280781A8001012B6 /* TVSeries */,
 				1E0711722807819B001012B6 /* Movies */,
@@ -349,6 +350,13 @@
 				1E9FA29F28623E6800D5D200 /* MovieListResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1E9FA2A32862698F00D5D200 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		1EC9983D2854DA7300B3BEE4 /* Network */ = {
