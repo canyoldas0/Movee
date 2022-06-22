@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 class DetailViewModel {
     
     private var id: Int
     private var detailAPI: DetailNetworkProtocol
+    private var cancellables: Set<AnyCancellable>?
     
     init(id:Int,
          detailAPI: DetailNetworkProtocol = DetailAPI()) {
@@ -22,8 +24,9 @@ class DetailViewModel {
     func getDetailData(for contentType: ContentType?) {
         guard let contentType = contentType else {return}
        
-        detailAPI.getDetailData(contentType: contentType,
+        let detailPublisher = detailAPI.getDetailData(contentType: contentType,
                                 contentId: id)
+        
     }
     
 }

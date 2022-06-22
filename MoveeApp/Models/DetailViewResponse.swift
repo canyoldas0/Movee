@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct MovieDetailResponse: Decodable {
+struct DetailViewResponse: Decodable {
     
 }

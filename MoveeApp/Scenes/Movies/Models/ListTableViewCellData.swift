@@ -27,11 +27,10 @@ class ListTableViewCellData {
     
     init(movie: Movie) {
         self.id = movie.id ?? 0
-        self.title = movie.originalTitle
+        self.title = movie.title
         self.score = movie.voteAverage
-        self.categories = "Categories"
+        self.categories = movie.categories
         self.imageUrl = movie.imageUrl
         self.date = movie.releaseDate
     }
-    
 }

@@ -9,6 +9,10 @@ import UIKit
 
 class SplashViewController: UIViewController {
     
+    deinit {
+        print("deinit")
+    }
+    
     @IBOutlet weak var appLogoImageView: UIImageView!
     @IBOutlet weak var loveTextLabel: UILabel!
     @IBOutlet weak var bottomTextContraint: NSLayoutConstraint!
@@ -26,11 +30,9 @@ class SplashViewController: UIViewController {
     }
     
     private func startApp() {
-        let moviesVC = MainViewBuilder.build()
+        let moviesVC = MainViewBuilder.build()        
         UIApplication.shared.windows.first?.rootViewController = moviesVC
         UIApplication.shared.windows.first?.makeKeyAndVisible()
-
-
     }
     
     private func fireSplashViewAnimation() {

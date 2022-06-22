@@ -48,8 +48,8 @@ class HeaderMoviesTableViewCell: UITableViewCell {
     
     private func setHeaderData(at index: Int) {
         self.scoreLabel.text = "\(movies?[index].voteAverage ?? 0)"
-        self.titleLabel.text = movies?[index].originalTitle
-        self.categoriesLabel.text = "Comedy, Action"
+        self.titleLabel.text = movies?[index].title
+        self.categoriesLabel.text = movies?[index].categories
     }
 
 }

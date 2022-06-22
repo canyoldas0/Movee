@@ -32,8 +32,8 @@
                                 <color key="textColor" name="moveeBlack"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crime, Drama, Thriller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgY-H4-oCd">
-                                <rect key="frame" x="90" y="63" width="150" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crime, Drama, Thriller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="QgY-H4-oCd">
+                                <rect key="frame" x="90" y="63" width="267" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="rMX-lF-zPh"/>
                                 </constraints>
@@ -96,6 +96,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QgY-H4-oCd" secondAttribute="trailing" constant="10" id="0Vf-eo-yrI"/>
                             <constraint firstAttribute="bottom" secondItem="7FP-3j-dfG" secondAttribute="bottom" constant="10" id="1ZC-RC-Xoq"/>
                             <constraint firstItem="OTT-WS-PWi" firstAttribute="top" secondItem="QgY-H4-oCd" secondAttribute="bottom" constant="10" id="4OW-4X-WDa"/>
                             <constraint firstItem="QgY-H4-oCd" firstAttribute="leading" secondItem="Cf8-Zn-NQk" secondAttribute="trailing" constant="10" id="5XD-CL-f1v"/>

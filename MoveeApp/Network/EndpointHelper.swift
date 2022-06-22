@@ -15,6 +15,10 @@ enum EndpointHelper {
     case popularMovies
     case topRatedMovies
     case movieDetail(Int)
+    case movieCredits(Int)
+    case seriesPopular
+    case seriesDetail(Int)
+    case seriesCredits(Int)
     
     func getURL() -> URL {
         
@@ -25,6 +29,14 @@ enum EndpointHelper {
             return URL(string: "\(EndpointHelper.baseURL)/movie/top_rated?api_key=\(EndpointHelper.apiKey)")!
         case .movieDetail(let id):
             return URL(string: "\(EndpointHelper.baseURL)/movie/\(id)?api_key=\(EndpointHelper.apiKey)")!
+        case .movieCredits(let id):
+            return URL(string: "\(EndpointHelper.baseURL)/movie/\(id)/credits?api_key=\(EndpointHelper.apiKey)")!
+        case .seriesPopular:
+            return URL(string: "\(EndpointHelper.baseURL)/tv/popular?api_key=\(EndpointHelper.apiKey)")!
+        case .seriesDetail(let id):
+            return URL(string: "\(EndpointHelper.baseURL)/tv/\(id)?api_key=\(EndpointHelper.apiKey)")!
+        case .seriesCredits(let id):
+            return URL(string: "\(EndpointHelper.baseURL)/tv/\(id)/credits?api_key=\(EndpointHelper.apiKey)")!
         }
     }
 }
