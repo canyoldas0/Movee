@@ -52,7 +52,9 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
     }
     
     private func fireDetailView(with id: Int) {
-        
+        let detailVC = DetailViewBuilder.build(with: id,
+                                               contentType: .movie)
+        navigationController?.pushViewController(detailVC, animated: false)
     }
 }
 
@@ -83,23 +85,13 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         case .horizontalCollectionView:
             let cell = HeaderMoviesTableViewCell.dequeue(fromTableView: tableView, atIndexPath: indexPath)
             cell.setData(from: viewModel.topRatedMovies)
+            cell.delegate = self
             return cell
         case .tableView:
             let cell = ListTableViewCell.dequeue(fromTableView: tableView, atIndexPath: indexPath)
             cell.setData(with: ListTableViewCellData(movie: viewModel.getItem(at: indexPath.row)))
+            cell.delegate = self
             return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else {return}
-        
-        guard let id = viewModel.getItem(at: indexPath.row).id else { return}
-        
-        cell.startTappedAnimation { [weak self] finish in
-            if finish {
-                self?.fireDetailView(with: id)
-            }
         }
     }
     
@@ -114,5 +106,13 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         case .tableView:
             return 140
         }
+    }
+}
+
+// MARK: ListCellAction Delegate
+extension MoviesViewController: ListCellActionDelegate {
+    
+    func pushDetailView(with id: Int) {
+        self.fireDetailView(with: id)
     }
 }

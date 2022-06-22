@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol HeaderCellActionDelegate: AnyObject {
+protocol ListCellActionDelegate: AnyObject {
     func pushDetailView(with id: Int)
 }
 
 class HeaderMoviesTableViewCell: UITableViewCell {
     
-    weak var delegate: HeaderCellActionDelegate?
+    weak var delegate: ListCellActionDelegate?
     
     @IBOutlet weak var scoreView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,6 +26,7 @@ class HeaderMoviesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollectionView()
+        selectionStyle = .none
         scoreView.layer.cornerRadius = scoreView.height / 2
     }
     
@@ -74,8 +75,10 @@ extension HeaderMoviesTableViewCell: UICollectionViewDelegate, UICollectionViewD
         
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.startTappedAnimation(with: { [weak self] finish in
+            guard let self = self,
+                  let id = self.movies?[indexPath.row].id else {return}
             if finish {
-//                delegate?.pushDetailView(with: )
+                self.delegate?.pushDetailView(with: id)
             }
         })
     }

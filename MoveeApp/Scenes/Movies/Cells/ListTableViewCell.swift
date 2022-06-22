@@ -10,6 +10,7 @@ import Kingfisher
 
 class ListTableViewCell: UITableViewCell {
     
+    weak var delegate: ListCellActionDelegate?
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -30,6 +31,7 @@ class ListTableViewCell: UITableViewCell {
         super.awakeFromNib()
         scoreView.layer.cornerRadius = scoreView.height / 2
         containerView.layer.cornerRadius =  8
+        addTapGesture()
     }
     
     private func fillFields() {
@@ -85,4 +87,22 @@ class ListTableViewCell: UITableViewCell {
     func setData(with data: ListTableViewCellData) {
         self.data = data
     }
+    
+    private func addTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
+        tap.delegate = self
+        contentView.addGestureRecognizer(tap)
+    }
+    
+    @objc fileprivate func buttonTapped(_ sender: UITapGestureRecognizer) {
+        isUserInteractionEnabled = false
+        contentView.startTappedAnimation { finish in
+            guard let id = self.data?.id else {return}
+            if finish {
+                self.delegate?.pushDetailView(with: id)
+                self.isUserInteractionEnabled = true
+            }
+        }
+    }
+    
 }

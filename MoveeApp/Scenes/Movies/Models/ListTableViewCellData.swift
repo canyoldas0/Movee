@@ -9,13 +9,15 @@ import Foundation
 
 class ListTableViewCellData {
   
+    private(set) var id: Int
     private(set) var title: String?
     private(set) var categories: String?
     private(set) var date: String?
     private(set) var score: Double?
     private(set) var imageUrl: String?
     
-    init(title: String? = nil, categories: String? = nil, date: String? = nil, score: Double? = nil, imageUrl: String? = nil) {
+    init(id: Int? = nil, title: String? = nil, categories: String? = nil, date: String? = nil, score: Double? = nil, imageUrl: String? = nil) {
+        self.id = id ?? 0
         self.title = title
         self.categories = categories
         self.date = date
@@ -24,6 +26,7 @@ class ListTableViewCellData {
     }
     
     init(movie: Movie) {
+        self.id = movie.id ?? 0
         self.title = movie.originalTitle
         self.score = movie.voteAverage
         self.categories = "Categories"
