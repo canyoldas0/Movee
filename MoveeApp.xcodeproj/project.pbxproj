@@ -11,9 +11,6 @@
 		1E0711432807815A001012B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0711422807815A001012B6 /* SceneDelegate.swift */; };
 		1E07114A2807815B001012B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E0711492807815B001012B6 /* Assets.xcassets */; };
 		1E07114D2807815B001012B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E07114B2807815B001012B6 /* LaunchScreen.storyboard */; };
-		1E0711582807815B001012B6 /* MoveeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0711572807815B001012B6 /* MoveeAppTests.swift */; };
-		1E0711622807815B001012B6 /* MoveeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0711612807815B001012B6 /* MoveeAppUITests.swift */; };
-		1E0711642807815B001012B6 /* MoveeAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0711632807815B001012B6 /* MoveeAppUITestsLaunchTests.swift */; };
 		1E071177280781E4001012B6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E071175280781E4001012B6 /* SplashViewController.swift */; };
 		1E071178280781E4001012B6 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E071176280781E4001012B6 /* SplashViewController.xib */; };
 		1E07117B28097F50001012B6 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E07117A28097F50001012B6 /* UIColor+Extensions.swift */; };
@@ -98,10 +95,7 @@
 		1E07114C2807815B001012B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E07114E2807815B001012B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E0711532807815B001012B6 /* MoveeAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoveeAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E0711572807815B001012B6 /* MoveeAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveeAppTests.swift; sourceTree = "<group>"; };
 		1E07115D2807815B001012B6 /* MoveeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoveeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E0711612807815B001012B6 /* MoveeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveeAppUITests.swift; sourceTree = "<group>"; };
-		1E0711632807815B001012B6 /* MoveeAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveeAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1E071175280781E4001012B6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1E071176280781E4001012B6 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		1E07117A28097F50001012B6 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -190,8 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				1E07113F2807815A001012B6 /* MoveeApp */,
-				1E0711562807815B001012B6 /* MoveeAppTests */,
-				1E0711602807815B001012B6 /* MoveeAppUITests */,
 				1E07113E2807815A001012B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -224,23 +216,6 @@
 				1E07114E2807815B001012B6 /* Info.plist */,
 			);
 			path = MoveeApp;
-			sourceTree = "<group>";
-		};
-		1E0711562807815B001012B6 /* MoveeAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				1E0711572807815B001012B6 /* MoveeAppTests.swift */,
-			);
-			path = MoveeAppTests;
-			sourceTree = "<group>";
-		};
-		1E0711602807815B001012B6 /* MoveeAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1E0711612807815B001012B6 /* MoveeAppUITests.swift */,
-				1E0711632807815B001012B6 /* MoveeAppUITestsLaunchTests.swift */,
-			);
-			path = MoveeAppUITests;
 			sourceTree = "<group>";
 		};
 		1E07117028078194001012B6 /* Scenes */ = {
@@ -636,7 +611,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E0711582807815B001012B6 /* MoveeAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,8 +618,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E0711642807815B001012B6 /* MoveeAppUITestsLaunchTests.swift in Sources */,
-				1E0711622807815B001012B6 /* MoveeAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
