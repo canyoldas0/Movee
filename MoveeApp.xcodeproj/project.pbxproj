@@ -59,6 +59,10 @@
 		1E2D4C582863090600A6EE04 /* DetailViewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2D4C572863090600A6EE04 /* DetailViewResponse.swift */; };
 		1E2D4C5A286354C500A6EE04 /* GenreListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2D4C59286354C500A6EE04 /* GenreListResponse.swift */; };
 		1E2D4C5F28635A2300A6EE04 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2D4C5E28635A2300A6EE04 /* Constants.swift */; };
+		1E2D4C62286386C200A6EE04 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1E2D4C61286386C200A6EE04 /* SnapKit */; };
+		1E2D4C682864EDE300A6EE04 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2D4C672864EDE300A6EE04 /* ScoreView.swift */; };
+		1E2D4C6B2864F44B00A6EE04 /* LabelPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2D4C6A2864F44B00A6EE04 /* LabelPack.swift */; };
+		1E2D4C6D286508B700A6EE04 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2D4C6C286508B700A6EE04 /* StringExtensions.swift */; };
 		1E5B6E3B280ACAD900F4A9AA /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B6E3A280ACAD900F4A9AA /* MoviesViewModel.swift */; };
 		1E5B6E40280ACC5500F4A9AA /* CYBase in Frameworks */ = {isa = PBXBuildFile; productRef = 1E5B6E3F280ACC5500F4A9AA /* CYBase */; };
 		1E5B6E42280ACEC000F4A9AA /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B6E41280ACEC000F4A9AA /* Typealiases.swift */; };
@@ -142,6 +146,9 @@
 		1E2D4C572863090600A6EE04 /* DetailViewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewResponse.swift; sourceTree = "<group>"; };
 		1E2D4C59286354C500A6EE04 /* GenreListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreListResponse.swift; sourceTree = "<group>"; };
 		1E2D4C5E28635A2300A6EE04 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1E2D4C672864EDE300A6EE04 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		1E2D4C6A2864F44B00A6EE04 /* LabelPack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPack.swift; sourceTree = "<group>"; };
+		1E2D4C6C286508B700A6EE04 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		1E5B6E3A280ACAD900F4A9AA /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		1E5B6E41280ACEC000F4A9AA /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		1E5B6E46280AD05700F4A9AA /* NSObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtensions.swift; sourceTree = "<group>"; };
@@ -156,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E2D4C62286386C200A6EE04 /* SnapKit in Frameworks */,
 				1E17C295280B5F9D008327EF /* Kingfisher in Frameworks */,
 				1E5B6E40280ACC5500F4A9AA /* CYBase in Frameworks */,
 			);
@@ -201,6 +209,7 @@
 		1E07113F2807815A001012B6 /* MoveeApp */ = {
 			isa = PBXGroup;
 			children = (
+				1E2D4C652864EDD500A6EE04 /* UIComponents */,
 				1E2D4C5B286359AA00A6EE04 /* Managers */,
 				1E9FA29E28623E6000D5D200 /* Models */,
 				1EC9983D2854DA7300B3BEE4 /* Network */,
@@ -293,6 +302,7 @@
 				1E17C286280B48F1008327EF /* UITableViewCollections.swift */,
 				1E17C296280B60C7008327EF /* DateExtensions.swift */,
 				1E17C29C280C38C5008327EF /* UICollectionView+Extensions.swift */,
+				1E2D4C6C286508B700A6EE04 /* StringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,6 +370,31 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		1E2D4C652864EDD500A6EE04 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				1E2D4C692864F43A00A6EE04 /* LabelPack */,
+				1E2D4C662864EDD900A6EE04 /* ScoreView */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		1E2D4C662864EDD900A6EE04 /* ScoreView */ = {
+			isa = PBXGroup;
+			children = (
+				1E2D4C672864EDE300A6EE04 /* ScoreView.swift */,
+			);
+			path = ScoreView;
+			sourceTree = "<group>";
+		};
+		1E2D4C692864F43A00A6EE04 /* LabelPack */ = {
+			isa = PBXGroup;
+			children = (
+				1E2D4C6A2864F44B00A6EE04 /* LabelPack.swift */,
+			);
+			path = LabelPack;
+			sourceTree = "<group>";
+		};
 		1E5B6E43280ACEEE00F4A9AA /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +452,7 @@
 			packageProductDependencies = (
 				1E5B6E3F280ACC5500F4A9AA /* CYBase */,
 				1E17C294280B5F9D008327EF /* Kingfisher */,
+				1E2D4C61286386C200A6EE04 /* SnapKit */,
 			);
 			productName = MoveeApp;
 			productReference = 1E07113D2807815A001012B6 /* MoveeApp.app */;
@@ -493,6 +529,7 @@
 			packageReferences = (
 				1E5B6E3E280ACC5500F4A9AA /* XCRemoteSwiftPackageReference "CYBase" */,
 				1E17C293280B5F9C008327EF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1E2D4C60286386C200A6EE04 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 1E07113E2807815A001012B6 /* Products */;
 			projectDirPath = "";
@@ -565,8 +602,11 @@
 				1E2D4C542862FFEC00A6EE04 /* DetailAPI.swift in Sources */,
 				1E5B6E42280ACEC000F4A9AA /* Typealiases.swift in Sources */,
 				1E2D4C5F28635A2300A6EE04 /* Constants.swift in Sources */,
+				1E2D4C6D286508B700A6EE04 /* StringExtensions.swift in Sources */,
+				1E2D4C682864EDE300A6EE04 /* ScoreView.swift in Sources */,
 				1E17C29F280C5003008327EF /* CardFlowLayout.swift in Sources */,
 				1E17C29D280C38C5008327EF /* UICollectionView+Extensions.swift in Sources */,
+				1E2D4C6B2864F44B00A6EE04 /* LabelPack.swift in Sources */,
 				1E17C28F280B5C13008327EF /* MoviesViewBuilder.swift in Sources */,
 				1E5B6E3B280ACAD900F4A9AA /* MoviesViewModel.swift in Sources */,
 				1E2D4C56286300E900A6EE04 /* DetailViewController.swift in Sources */,
@@ -932,6 +972,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		1E2D4C60286386C200A6EE04 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		1E5B6E3E280ACC5500F4A9AA /* XCRemoteSwiftPackageReference "CYBase" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/canyoldas0/CYBase";
@@ -947,6 +995,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1E17C293280B5F9C008327EF /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		1E2D4C61286386C200A6EE04 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E2D4C60286386C200A6EE04 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		1E5B6E3F280ACC5500F4A9AA /* CYBase */ = {
 			isa = XCSwiftPackageProductDependency;
