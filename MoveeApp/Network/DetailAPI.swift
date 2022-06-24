@@ -10,21 +10,23 @@ import Combine
 
 protocol DetailNetworkProtocol: AnyObject {
     
-    func getDetailData(contentType: ContentType, contentId: Int) -> AnyPublisher<DetailViewResponse, Error>
+    func getDetailData(contentType: ContentType, contentId: Int) -> AnyPublisher<ItemDetailResponse, Error>
 //    func getCreditsData(contentType: ContentType, contentId: Int) -
 }
 
 class DetailAPI: DetailNetworkProtocol {
     
-    func getDetailData(contentType: ContentType, contentId: Int) -> AnyPublisher<DetailViewResponse, Error> {
+    func getDetailData(contentType: ContentType, contentId: Int) -> AnyPublisher<ItemDetailResponse, Error> {
         
         switch contentType {
         case .movie:
             return BaseAPI.shared.execute(EndpointHelper.movieDetail(contentId).getURL(),
-                                   decodingType: DetailViewResponse.self)
+                                   decodingType: ItemDetailResponse.self)
+                                    
         case .tvSeries:
             return BaseAPI.shared.execute(EndpointHelper.seriesDetail(contentId).getURL(),
-                                   decodingType: DetailViewResponse.self)
+                                   decodingType: ItemDetailResponse.self)
+                                    
         }
     }
 }

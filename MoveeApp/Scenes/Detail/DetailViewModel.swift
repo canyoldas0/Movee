@@ -12,7 +12,15 @@ class DetailViewModel {
     
     private var id: Int
     private var detailAPI: DetailNetworkProtocol
-    private var cancellables: Set<AnyCancellable>?
+    private var cancellables = Set<AnyCancellable>()
+    
+    
+    // TODO: convert it DetailViewData
+    private var detailData: ItemDetailResponse? {
+        didSet {
+            
+        }
+    }
     
     init(id:Int,
          detailAPI: DetailNetworkProtocol = DetailAPI()) {
@@ -24,9 +32,11 @@ class DetailViewModel {
     func getDetailData(for contentType: ContentType?) {
         guard let contentType = contentType else {return}
        
-        let detailPublisher = detailAPI.getDetailData(contentType: contentType,
-                                contentId: id)
-        
+        detailAPI.getDetailData(contentType: contentType,
+                                                      contentId: id)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: {_ in }) { self.detailData = $0 }
+            .store(in: &cancellables)
     }
     
 }

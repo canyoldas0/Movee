@@ -20,6 +20,14 @@ class DetailViewController: CYViewController<DetailViewModel> {
         return temp
     }()
     
+    lazy var labelStackView: UIStackView = {
+        let temp = UIStackView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.axis = .vertical
+        temp.spacing = 5
+        return temp
+    }()
+    
     lazy var scoreView: ScoreView = {
         let temp = ScoreView()
         temp.translatesAutoresizingMaskIntoConstraints = false
@@ -28,22 +36,55 @@ class DetailViewController: CYViewController<DetailViewModel> {
         return temp
     }()
     
+    
     lazy var titleLabel: UILabel = {
-       let temp = UILabel()
+        let temp = UILabel()
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.font = .systemFont(ofSize: 24, weight: .bold)
-        temp.text = ""
+        temp.text = "Joker"
+        temp.textColor = .black
         return temp
     }()
     
     lazy var categoryLabel: UILabel = {
-       let temp = UILabel()
+        let temp = UILabel()
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.font = .systemFont(ofSize: 15, weight: .medium)
-        temp.text = ""
+        temp.text = "Category, Thriller"
+        temp.textColor = .almostBlack
         return temp
     }()
     
+    lazy var timeLabelStack: UIStackView = {
+        let temp = UIStackView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.distribution = .fillProportionally
+        temp.spacing = 15
+        return temp
+    }()
+    
+    lazy var lengthLabel: IconLabelPack = {
+        let temp = IconLabelPack()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        return temp
+    }()
+    
+    lazy var yearLabel: IconLabelPack = {
+       let temp = IconLabelPack()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        return temp
+    }()
+    
+    lazy var descriptionLabel: UILabel = {
+       let temp = UILabel()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.font = .systemFont(ofSize: 17, weight: .regular)
+        temp.numberOfLines = 0
+        temp.text = "In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: The Joker."
+        temp.textColor = .almostBlack
+        temp.layer.opacity = 0.8
+        return temp
+    }()
     
     
     override func viewDidLoad() {
@@ -69,10 +110,53 @@ class DetailViewController: CYViewController<DetailViewModel> {
         
         scoreView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(24)
-            make.bottom.equalTo(imageView).offset(12)
+            make.bottom.equalTo(imageView.snp.bottom).offset(12)
         }
         
-        scoreView.setScore(with: 9.3)
+        view.addSubview(labelStackView)
+        
+        labelStackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(24)
+            make.top.equalTo(scoreView.snp.bottom).offset(10)
+            make.trailing.equalToSuperview().inset(24)
+        }
+
+        labelStackView.addArrangedSubview(titleLabel)
+        labelStackView.addArrangedSubview(categoryLabel)
+        
+        titleLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
+        
+        labelStackView.setCustomSpacing(10, after: categoryLabel)
+        
+        timeLabelStack.addArrangedSubview(lengthLabel)
+        timeLabelStack.addArrangedSubview(yearLabel)
+        
+        
+        timeLabelStack.addHorizontalSeperator(after: lengthLabel)
+        labelStackView.addArrangedSubview(timeLabelStack)
+        
+        let lineView = UIView()
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        lineView.backgroundColor = .almostBlack
+        lineView.layer.opacity = 0.4
+        
+        labelStackView.addArrangedSubview(lineView)
+        
+        lineView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+        }
+        
+        labelStackView.setCustomSpacing(20, after: timeLabelStack)
+        
+        labelStackView.addArrangedSubview(descriptionLabel)
+        
+        labelStackView.setCustomSpacing(20, after: lineView)
+        
+        lengthLabel.setData(for: .lengthLabel, value: "56")
+        yearLabel.setData(for: .seasonNumber, value: "2014 - 2018")
+        
     }
     
 }
