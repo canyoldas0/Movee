@@ -19,6 +19,7 @@ class DetailViewBuilder {
         
         let viewModel = DetailViewModel(id: id)
         let vc = DetailViewController(viewModel: viewModel)
+        vc.navigationController?.navigationBar.prefersLargeTitles = false
         vc.contentType = contentType
         return vc
     }

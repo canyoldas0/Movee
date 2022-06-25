@@ -11,7 +11,7 @@ import Combine
 protocol DetailNetworkProtocol: AnyObject {
     
     func getDetailData(contentType: ContentType, contentId: Int) -> AnyPublisher<ItemDetailResponse, Error>
-//    func getCreditsData(contentType: ContentType, contentId: Int) -
+    func getCreditsData(contentType: ContentType, contentId: Int) -> AnyPublisher<CreditsResponse, Error>
 }
 
 class DetailAPI: DetailNetworkProtocol {
@@ -29,4 +29,17 @@ class DetailAPI: DetailNetworkProtocol {
                                     
         }
     }
+    
+    func getCreditsData(contentType: ContentType, contentId: Int) -> AnyPublisher<CreditsResponse, Error> {
+        
+        switch contentType {
+        case .movie:
+            return BaseAPI.shared.execute(EndpointHelper.movieCredits(contentId).getURL(),
+                                          decodingType: CreditsResponse.self)
+        case .tvSeries:
+            return BaseAPI.shared.execute(EndpointHelper.seriesCredits(contentId).getURL(),
+                                          decodingType: CreditsResponse.self)
+        }
+    }
+
 }

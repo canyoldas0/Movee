@@ -31,12 +31,19 @@ class DetailViewModel {
     
     func getDetailData(for contentType: ContentType?) {
         guard let contentType = contentType else {return}
-       
-        detailAPI.getDetailData(contentType: contentType,
-                                                      contentId: id)
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: {_ in }) { self.detailData = $0 }
+        
+        let creditsPublisher = detailAPI.getCreditsData(contentType: contentType, contentId: id)
+        let detailPublisher = detailAPI.getDetailData(contentType: contentType, contentId: id)
+        
+        creditsPublisher
+            .zip(detailPublisher)
+            .handleEvents(receiveOutput: { (detailResponse, creditsResponse) in
+//                self.moviesState?(.done)
+                    print(creditsResponse)
+            },
+            receiveCompletion: { _ in })
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { _ in })
             .store(in: &cancellables)
     }
-    
 }
