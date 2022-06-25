@@ -11,68 +11,43 @@ import SnapKit
 
 class DetailViewController: CYViewController<DetailViewModel> {
     
+    deinit {
+        print("detail vc deinit")
+    }
+    
     var contentType: ContentType?
-    
-    
-    lazy var imageView: UIImageView = {
-        let temp = UIImageView(image: UIImage(named: "group4"))
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        return temp
-    }()
-    
-    lazy var scoreView: ScoreView = {
-        let temp = ScoreView()
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        temp.widthAnchor.constraint(equalToConstant: 61).isActive = true
-        return temp
-    }()
-    
-    lazy var titleLabel: UILabel = {
-       let temp = UILabel()
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.font = .systemFont(ofSize: 24, weight: .bold)
-        temp.text = ""
-        return temp
-    }()
-    
-    lazy var categoryLabel: UILabel = {
-       let temp = UILabel()
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.font = .systemFont(ofSize: 15, weight: .medium)
-        temp.text = ""
-        return temp
-    }()
-    
-    
+    var detailView: DetailView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.backgroundColor = .clear
         view.backgroundColor = .moveeBackground
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        subscribeToViewModel()
         viewModel.getDetailData(for: contentType)
         setupLayout()
     }
     
     private func setupLayout() {
-        view.addSubview(imageView)
+        self.detailView = DetailView()
+        detailView.translatesAutoresizingMaskIntoConstraints = false
         
-        imageView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.height.equalTo(400)
+        view.addSubview(detailView)
+        detailView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
-        
-        view.addSubview(scoreView)
-        
-        scoreView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(24)
-            make.bottom.equalTo(imageView).offset(12)
-        }
-        
-        scoreView.setScore(with: 9.3)
     }
     
+    private func subscribeToViewModel() {
+        
+        viewModel.listenViewModel { [weak self] state in
+            
+            switch state {
+            case .done:
+                self?.detailView.setData(data: self?.viewModel.getViewData())
+            default:
+                break
+            }
+        }
+    }
 }

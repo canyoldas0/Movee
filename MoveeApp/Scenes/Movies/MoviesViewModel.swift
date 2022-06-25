@@ -8,12 +8,10 @@
 import Foundation
 import Combine
 
-enum MovieListViewState {
-    
+enum ViewState {
     case loading
     case done
     case failure
-    
 }
 
 final class MoviesViewModel {

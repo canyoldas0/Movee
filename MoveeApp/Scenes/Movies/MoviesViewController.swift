@@ -19,9 +19,10 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
     
     private let tableViewSections: [MoviesTableViewSection] = [.horizontalCollectionView, .tableView]
     
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         setTableView()
         listenViewModel()

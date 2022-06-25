@@ -2,76 +2,78 @@
 //  LabelPack.swift
 //  MoveeApp
 //
-//  Created by Can Yoldaş on 23.06.2022.
+//  Created by Can Yoldaş on 25.06.2022.
 //
 
 import UIKit
 import CYBase
 
-class LabelPack: BaseView {
+struct LabelPackData {
+    let contentType: ContentType
+    let string: String
+}
+
+class LabelPack: CYBaseView<LabelPackData> {
     
-    enum ViewType {
-        case lengthLabel
-        case seasonNumber
-        case releaseDate
-    }
-    
-    private lazy var container: UIStackView = {
-        let temp = UIStackView()
-        temp.spacing = 5
+    private lazy var container: UIView = {
+       let temp = UIView()
         temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.backgroundColor = .moveeBlue
-        temp.roundCorner(with: 12)
         return temp
     }()
     
-    private lazy var iconView: UIImageView = {
-        let temp = UIImageView(image: UIImage(named: "star"))
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.tintColor = .moveeWhite
-        temp.contentMode = .scaleAspectFit
-        return temp
-    }()
-    
-    private lazy var textLabel: UILabel = {
+    private lazy var firstLabel: UILabel = {
         let temp = UILabel()
         temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.text = "8.5"
-        temp.font = .systemFont(ofSize: 12, weight: .black)
-        temp.textColor = .moveeWhite
+        temp.font = .systemFont(ofSize: 17, weight: .regular)
+        temp.textColor = .almostBlack
+        temp.layer.opacity = 0.8
+        temp.text = "asdasd"
+        return temp
+    }()
+    
+    private lazy var secondLabel: UILabel = {
+        let temp = UILabel()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.font = .systemFont(ofSize: 17, weight: .semibold)
+        temp.textColor = .vibrantBlue
+        temp.layer.opacity = 0.8
+        temp.text = "adsa"
         return temp
     }()
     
     override func setupViews() {
         super.setupViews()
         
+        // Constraints
         addSubview(container)
-        container.addArrangedSubview(iconView)
-        container.addArrangedSubview(textLabel)
+        container.addSubview(firstLabel)
+        container.addSubview(secondLabel)
         
-        container.snp.makeConstraints( { $0.edges.equalToSuperview() })
-        
-        iconView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(10)
-            make.height.equalTo(15)
-            make.width.equalTo(15)
+        container.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
+        
+        firstLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        secondLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(firstLabel.snp.trailing).offset(5)
+        }
+    }
+    override func loadDataToView() {
+        super.loadDataToView()
+        guard let data = returnData() else {return}
+        switch data.contentType {
+        case .movie:
+            firstLabel.text = "Director:"
+        case .tvSeries:
+            firstLabel.text = "Creators:"
+        }
+        secondLabel.text = data.string
     }
     
-    func setData(for contentType: ViewType, value: String) {
-        
-        switch contentType {
-        case .lengthLabel:
-            iconView.image = UIImage(named: "time")
-            textLabel.text = "\(value) min"
-        case .seasonNumber:
-            iconView.image = UIImage(named: "calendar")
-            textLabel.text = "\(value) min"
-        case .releaseDate:
-            iconView.image = UIImage(named: "calendar")
-            if let date = value.convertDate(from: .yyyyMMdd, to: .ddMMyyyy) {
-                textLabel.text = date
-            }
-        }
-    }
+    
 }
