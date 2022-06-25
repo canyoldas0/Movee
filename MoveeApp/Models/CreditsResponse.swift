@@ -9,7 +9,9 @@ import Foundation
 
 struct CreditsResponse: Decodable {
     
-    let casts: [Cast]?
+    let cast: [Cast]?
+    let crew: [Crew]?
+
 }
 
 struct Cast: Decodable {
@@ -33,3 +35,24 @@ struct Cast: Decodable {
     }
 }
 
+struct Crew: Decodable {
+    
+    let id: Int?
+    let knownFor: String?
+    let profilePath: String?
+    let job: String?
+    let name: String?
+    
+    var isDirector: Bool {
+        return job == "Director" || job == "Series Director"
+    }
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case knownFor = "known_for_department"
+        case profilePath = "profile_path"
+        case job
+    }
+}

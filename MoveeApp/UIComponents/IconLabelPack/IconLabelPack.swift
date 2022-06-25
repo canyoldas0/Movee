@@ -8,13 +8,21 @@
 import UIKit
 import CYBase
 
-class IconLabelPack: BaseView {
+enum ViewType {
+    case lengthLabel
+    case seasonNumber
+    case releaseDate
+}
+
+struct IconLabelPackData {
     
-    enum ViewType {
-        case lengthLabel
-        case seasonNumber
-        case releaseDate
-    }
+    let viewType: ViewType?
+    let string: String?
+}
+
+class IconLabelPack: CYBaseView<IconLabelPackData> {
+    
+ 
     
     private lazy var container: UIStackView = {
         let temp = UIStackView()
@@ -56,20 +64,26 @@ class IconLabelPack: BaseView {
         }
     }
     
-    func setData(for contentType: ViewType, value: String) {
+    override func loadDataToView() {
+        super.loadDataToView()
+        guard let data = returnData(),
+        let viewType = data.viewType,
+        let string = data.string else {return}
         
-        switch contentType {
+        
+        switch viewType {
         case .lengthLabel:
             iconView.image = UIImage(named: "time")
-            textLabel.text = "\(value) min"
+            textLabel.text = "\(string) min"
         case .seasonNumber:
             iconView.image = UIImage(named: "calendar")
-            textLabel.text = "TV Series (\(value))"
+            textLabel.text = "TV Series (\(string))"
         case .releaseDate:
             iconView.image = UIImage(named: "calendar")
-            if let date = value.convertDate(from: .yyyyMMdd, to: .ddMMyyyy) {
+            if let date = string.convertDate(from: .yyyyMMdd, to: .ddMMyyyy) {
                 textLabel.text = date
             }
         }
+        
     }
 }

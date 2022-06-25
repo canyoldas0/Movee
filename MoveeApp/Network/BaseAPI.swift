@@ -18,7 +18,6 @@ class BaseAPI {
                     decodingType: T.Type,
                     queue: DispatchQueue = .main,
                     retries: Int = 0) -> AnyPublisher<T, Error> where T: Decodable {
-        
         return session.dataTaskPublisher(for: url)
             .map { $0.data }
             .decode(type: T.self, decoder: JSONDecoder())

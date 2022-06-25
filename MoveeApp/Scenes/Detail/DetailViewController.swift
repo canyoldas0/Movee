@@ -18,7 +18,8 @@ class DetailViewController: CYViewController<DetailViewModel> {
         super.viewDidLoad()
         navigationController?.navigationBar.backgroundColor = .clear
         view.backgroundColor = .moveeBackground
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        subscribeToViewModel()
         viewModel.getDetailData(for: contentType)
         setupLayout()
     }
@@ -33,4 +34,16 @@ class DetailViewController: CYViewController<DetailViewModel> {
         }
     }
     
+    private func subscribeToViewModel() {
+        
+        viewModel.listenViewModel { [weak self] state in
+            
+            switch state {
+            case .done:
+                self?.detailView.setData(data: self?.viewModel.getViewData())
+            default:
+                break
+            }
+        }
+    }
 }

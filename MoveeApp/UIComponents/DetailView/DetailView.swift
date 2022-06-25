@@ -10,7 +10,7 @@ import CYBase
 
 struct DetailViewData {
     
-    let viewData: [CYDataProtocol]
+    private(set) var viewData: [CYDataProtocol]
 }
 
 class DetailView: CYBaseView<DetailViewData> {
@@ -20,18 +20,27 @@ class DetailView: CYBaseView<DetailViewData> {
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.dataSource = self
         temp.delegate = self
+        temp.contentInsetAdjustmentBehavior = .never
+        temp.allowsSelection = false
+        temp.backgroundColor = .clear
         temp.estimatedRowHeight = UITableView.automaticDimension
         temp.register(DetailViewCell.self, forCellReuseIdentifier: DetailViewCell.identifier)
         return temp
     }()
-    
+        
     override func setupViews() {
         super.setupViews()
-        
         addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+    }
+    
+    override func loadDataToView() {
+        super.loadDataToView()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 }
@@ -52,8 +61,4 @@ extension DetailView: UITableViewDelegate, UITableViewDataSource {
         cell.setData(data: data.viewData[indexPath.row])
         return cell
     }
-    
-    
-    
-    
 }

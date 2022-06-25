@@ -43,10 +43,19 @@ struct ItemDetailResponse: Decodable {
     let releaseDate: String?
     let revenue, runtime: Int?
     let title: String?
+    
+    var imageUrl: String {
+        return "https://image.tmdb.org/t/p/w500\(backdropPath ?? "")"
+    }
+    
+    var categories: String? {
+        let temp = genres?.compactMap { $0.name }
+        return temp?.joined(separator: ", ")
+    }
 
     enum CodingKeys: String, CodingKey {
         case adult
-        case backdropPath
+        case backdropPath = "backdrop_path"
         case createdBy
         case episodeRunTime
         case firstAirDate
@@ -63,7 +72,7 @@ struct ItemDetailResponse: Decodable {
         case originalLanguage
         case originalName
         case overview, popularity
-        case posterPath
+        case posterPath = "poster_path"
         case productionCompanies
         case productionCountries
         case seasons
@@ -75,7 +84,7 @@ struct ItemDetailResponse: Decodable {
         case belongsToCollection
         case budget
         case imdbID, originalTitle
-        case releaseDate
+        case releaseDate = "release_date"
         case revenue, runtime
         case title
     }

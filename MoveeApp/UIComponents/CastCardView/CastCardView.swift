@@ -9,7 +9,7 @@ import UIKit
 import CYBase
 
 struct CastCardViewData {
-    let items: [CYDataProtocol]
+    let items: [CYDataProtocol]?
 }
 
 class CastCardView: CYBaseView<CastCardViewData> {
@@ -74,7 +74,7 @@ extension CastCardView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let data = returnData() else {return 0}
-        return data.items.count
+        return data.items?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -83,7 +83,7 @@ extension CastCardView: UICollectionViewDataSource, UICollectionViewDelegate {
             return UICollectionViewCell()
         }
         
-        guard let data = returnData(), let cellData = data.items[indexPath.row] as? CastCollectionViewCellData else {
+        guard let data = returnData(), let cellData = data.items?[indexPath.row] as? CastCollectionViewCellData else {
             return UICollectionViewCell()
         }
 

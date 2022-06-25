@@ -8,7 +8,12 @@
 import UIKit
 import CYBase
 
-class LabelPack: BaseView {
+struct LabelPackData {
+    let contentType: ContentType
+    let string: String
+}
+
+class LabelPack: CYBaseView<LabelPackData> {
     
     private lazy var container: UIView = {
        let temp = UIView()
@@ -36,7 +41,6 @@ class LabelPack: BaseView {
         return temp
     }()
     
-    
     override func setupViews() {
         super.setupViews()
         
@@ -59,17 +63,17 @@ class LabelPack: BaseView {
             make.leading.equalTo(firstLabel.snp.trailing).offset(5)
         }
     }
-    
-    // firstLabel: -> Creators, Director
-    // secondLabel: -> Names
-    func setData(for contentType: ContentType, value: String) {
-        
-        switch contentType {
+    override func loadDataToView() {
+        super.loadDataToView()
+        guard let data = returnData() else {return}
+        switch data.contentType {
         case .movie:
             firstLabel.text = "Director:"
         case .tvSeries:
             firstLabel.text = "Creators:"
         }
-        secondLabel.text = value
+        secondLabel.text = data.string
     }
+    
+    
 }

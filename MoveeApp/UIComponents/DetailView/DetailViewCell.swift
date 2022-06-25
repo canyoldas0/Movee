@@ -7,6 +7,20 @@
 
 import UIKit
 import CYBase
+import Kingfisher
+
+struct DetailViewCellData: CYDataProtocol {
+    
+    let imageUrl: String?
+    let score: Double?
+    let title: String?
+    let categories: String?
+    let lengthData: IconLabelPackData?
+    let yearData: IconLabelPackData?
+    let description: String?
+    let directorData: LabelPackData?
+    let castData: CastCardViewData?
+}
 
 
 class DetailViewCell: CYTableViewCell {
@@ -14,6 +28,7 @@ class DetailViewCell: CYTableViewCell {
     private lazy var contentStack: UIStackView = {
         let temp = UIStackView()
         temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.backgroundColor = .clear
         temp.axis = .vertical
         return temp
     }()
@@ -46,6 +61,7 @@ class DetailViewCell: CYTableViewCell {
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.font = .systemFont(ofSize: 24, weight: .bold)
         temp.text = "Joker"
+        temp.numberOfLines = 0
         temp.textColor = .black
         return temp
     }()
@@ -92,7 +108,7 @@ class DetailViewCell: CYTableViewCell {
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.font = .systemFont(ofSize: 17, weight: .regular)
         temp.numberOfLines = 0
-        temp.text = "In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: The Joker.In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: The Joker.In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: The Joker."
+        temp.text = "Lorem Ipsum"
         temp.textColor = .almostBlack
         temp.layer.opacity = 0.8
         return temp
@@ -114,13 +130,12 @@ class DetailViewCell: CYTableViewCell {
     override func addViewComponents() {
         super.addViewComponents()
         
+        backgroundColor = .clear
         addSubview(contentStack)
         
-        contentStack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
         
         contentStack.addArrangedSubview(posterImageView)
+        addSubview(scoreView)
         contentStack.addArrangedSubview(labelStackView)
         
         labelStackView.addArrangedSubview(titleLabel)
@@ -137,8 +152,16 @@ class DetailViewCell: CYTableViewCell {
         
         contentStack.addArrangedSubview(castCardView)
         
-        seperatorLine.snp.makeConstraints { make in
-            make.height.equalTo(1)
+        contentStack.setCustomSpacing(20, after: labelStackView)
+        labelStackView.setCustomSpacing(10, after: categoryLabel)
+        labelStackView.setCustomSpacing(20, after: timeLabelStack)
+        labelStackView.setCustomSpacing(20, after: seperatorLine)
+        labelStackView.setCustomSpacing(20, after: descriptionLabel)
+        labelStackView.setCustomSpacing(20, after: directorLabel)
+        
+        
+        contentStack.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         posterImageView.snp.makeConstraints { make in
@@ -146,9 +169,18 @@ class DetailViewCell: CYTableViewCell {
             make.trailing.equalToSuperview()
             make.height.equalTo(400)
         }
-    
+        
+        
+        seperatorLine.snp.makeConstraints { make in
+            make.height.equalTo(1)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
+        
         scoreView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(24)
+            make.leading.equalTo(contentStack.snp.leading).inset(24)
             make.bottom.equalTo(posterImageView.snp.bottom).offset(12)
         }
         
@@ -158,26 +190,28 @@ class DetailViewCell: CYTableViewCell {
             make.trailing.equalToSuperview().inset(24)
         }
         
-        titleLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
-        }
-        
         castCardView.snp.makeConstraints { make in
             make.height.equalTo(100)
         }
-        
-        labelStackView.setCustomSpacing(10, after: categoryLabel)
-        labelStackView.setCustomSpacing(20, after: timeLabelStack)
-        labelStackView.setCustomSpacing(20, after: seperatorLine)
-        labelStackView.setCustomSpacing(20, after: descriptionLabel)
-        labelStackView.setCustomSpacing(20, after: directorLabel)
-        
-        contentStack.setCustomSpacing(20, after: labelStackView)
     }
     
     func setData(data: CYDataProtocol?) {
+        guard let data = data as? DetailViewCellData,
+        let imageString = data.imageUrl else {return}
         
+        if let imageUrl = URL(string: imageString) {
+            posterImageView.kf.setImage(with: imageUrl)
+        }
+        
+        scoreView.setScore(with: data.score)
+        titleLabel.text = data.title
+        categoryLabel.text = data.categories
+        lengthLabel.setData(data: data.lengthData)
+        yearLabel.setData(data: data.yearData)
+        descriptionLabel.text = data.description
+        directorLabel.setData(data: data.directorData)
+        castCardView.setData(data: data.castData)
     }
 }
-    
+
 
