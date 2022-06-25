@@ -86,6 +86,12 @@ class DetailViewController: CYViewController<DetailViewModel> {
         return temp
     }()
     
+    lazy var directorLabel: LabelPack = {
+       let temp = LabelPack()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        return temp
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,6 +160,10 @@ class DetailViewController: CYViewController<DetailViewModel> {
         
         labelStackView.setCustomSpacing(20, after: lineView)
         
+        labelStackView.addArrangedSubview(directorLabel)
+        labelStackView.setCustomSpacing(20, after: descriptionLabel)
+        
+        directorLabel.setData(for: .tvSeries, value: "David Benioff, D.B. Weiss")
         lengthLabel.setData(for: .lengthLabel, value: "56")
         yearLabel.setData(for: .seasonNumber, value: "2014 - 2018")
         
