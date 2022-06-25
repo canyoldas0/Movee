@@ -11,11 +11,13 @@ import CYBase
 
 class DetailViewModel {
     
+    
     private var id: Int
     private var detailAPI: DetailNetworkProtocol
     private var cancellables = Set<AnyCancellable>()
     
     private var viewState: ViewStateBlock?
+    private var dataFormatter: DetailDataFormatterProtocol?
     
     
     private var detailData: DetailViewData? {
@@ -25,9 +27,11 @@ class DetailViewModel {
     }
     
     init(id:Int,
-         detailAPI: DetailNetworkProtocol = DetailAPI()) {
+         detailAPI: DetailNetworkProtocol = DetailAPI(),
+         dataFormatter: DetailDataFormatterProtocol = DetailDataFormatter()) {
         self.id = id
         self.detailAPI = detailAPI
+        self.dataFormatter = dataFormatter
     }
     
     func listenViewModel(with completion: @escaping ViewStateBlock) {
@@ -43,7 +47,7 @@ class DetailViewModel {
         creditsPublisher
             .zip(detailPublisher)
             .handleEvents(receiveOutput: { (creditsResponse, detailResponse) in
-                self.detailData = self.formatResponse(contentType: contentType,
+                self.detailData = self.dataFormatter?.formatResponse(contentType: contentType,
                                     credits: creditsResponse,
                                     detail: detailResponse)
             },
@@ -55,49 +59,5 @@ class DetailViewModel {
     
     func getViewData() -> DetailViewData? {
         return detailData
-    }
-    
-    fileprivate func formatResponse(contentType: ContentType,
-                                credits: CreditsResponse,
-                                detail: ItemDetailResponse) -> DetailViewData {
-        
-        let castCellData = credits.cast?.compactMap({ cast in
-            CastCollectionViewCellData(id: cast.id ?? 0,
-                                       name: cast.name ?? "",
-                                       imageUrl: cast.imageUrl)
-        })
-        let castData = CastCardViewData(items: castCellData)
-        
-        switch contentType {
-        case .movie:
-            return DetailViewData(viewData: [DetailViewCellData(imageUrl: detail.imageUrl,
-                                                                score: detail.voteAverage,
-                                                                title: detail.title,
-                                                                categories: detail.categories,
-                                                                lengthData: IconLabelPackData(viewType: .lengthLabel,
-                                                                                              string: "\(detail.runtime ?? 0)"),
-                                                                yearData: IconLabelPackData(viewType: .releaseDate,
-                                                                                            string: "\(detail.releaseDate ?? "")"),
-                                                                description: detail.overview,
-                                                                directorData: LabelPackData(contentType: .movie,
-                                                                                            string: credits.crew?.first(where: {$0.isDirector == true})?.name ?? "No data"),
-                                                                castData: castData
-                                                               )])
-        case .tvSeries:
-            return DetailViewData(viewData: [DetailViewCellData(imageUrl: detail.imageUrl,
-                                                                score: detail.voteAverage,
-                                                                title: detail.name,
-                                                                categories: detail.categories,
-                                                                lengthData: IconLabelPackData(viewType: .lengthLabel,
-                                                                                              string: "\(detail.episodeRunTime?.first ?? 0)"),
-                                                                yearData: IconLabelPackData(viewType: .seasonNumber,
-                                                                                            string: "\(detail.getYears() ?? "")"),
-                                                                description: detail.overview,
-                                                                directorData: LabelPackData(contentType: .movie,
-                                                                                            string: credits.crew?.first(where: {$0.isDirector == true})?.name ?? "No data"),
-                                                                castData: castData
-                                                               )])
-        }
-        
     }
 }

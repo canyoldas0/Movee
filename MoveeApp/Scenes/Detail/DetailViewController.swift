@@ -11,6 +11,10 @@ import SnapKit
 
 class DetailViewController: CYViewController<DetailViewModel> {
     
+    deinit {
+        print("detail vc deinit")
+    }
+    
     var contentType: ContentType?
     var detailView: DetailView!
     

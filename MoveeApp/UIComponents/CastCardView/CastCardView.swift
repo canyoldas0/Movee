@@ -22,9 +22,10 @@ class CastCardView: CYBaseView<CastCardViewData> {
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let temp = UICollectionView(frame: .zero, collectionViewLayout: layout)
         temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.backgroundColor = .black
+        temp.backgroundColor = .clear
         temp.delegate = self
         temp.dataSource = self
+        temp.isUserInteractionEnabled = true
         temp.showsHorizontalScrollIndicator = false
         temp.register(UINib(nibName: CastCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: CastCollectionViewCell.identifier)
         return temp
@@ -69,7 +70,7 @@ class CastCardView: CYBaseView<CastCardViewData> {
 extension CastCardView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
