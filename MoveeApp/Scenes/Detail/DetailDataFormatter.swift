@@ -33,7 +33,7 @@ class DetailDataFormatter: DetailDataFormatterProtocol {
                                        name: cast.name ?? "",
                                        imageUrl: cast.imageUrl)
         })
-        let castData = CastCardViewData(items: castCellData)
+        let castData = CastCardViewData(title: "Casts", items: castCellData)
         
         return DetailViewData(viewData: [DetailViewCellData(imageUrl: detail.imageUrl,
                                                             score: detail.voteAverage,
@@ -56,7 +56,7 @@ class DetailDataFormatter: DetailDataFormatterProtocol {
                                        name: cast.name ?? "",
                                        imageUrl: cast.imageUrl)
         })
-        let castData = CastCardViewData(items: castCellData)
+        let castData = CastCardViewData(title: "Casts", items: castCellData)
         
         
         return DetailViewData(viewData: [DetailViewCellData(imageUrl: detail.imageUrl,

@@ -22,6 +22,7 @@ class CastCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureViews()
     }
     
     private func configureViews() {

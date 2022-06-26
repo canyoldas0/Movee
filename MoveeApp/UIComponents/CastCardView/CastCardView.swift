@@ -9,6 +9,7 @@ import UIKit
 import CYBase
 
 struct CastCardViewData {
+    let title: String?
     let items: [CYDataProtocol]?
 }
 
@@ -18,14 +19,13 @@ class CastCardView: CYBaseView<CastCardViewData> {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 130, height: 130)
+        layout.minimumInteritemSpacing = 5
         let temp = UICollectionView(frame: .zero, collectionViewLayout: layout)
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.backgroundColor = .clear
         temp.delegate = self
         temp.dataSource = self
-        temp.isUserInteractionEnabled = true
         temp.showsHorizontalScrollIndicator = false
         temp.register(UINib(nibName: CastCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: CastCollectionViewCell.identifier)
         return temp
@@ -52,7 +52,7 @@ class CastCardView: CYBaseView<CastCardViewData> {
         }
         collectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
@@ -60,8 +60,10 @@ class CastCardView: CYBaseView<CastCardViewData> {
     
     override func loadDataToView() {
         super.loadDataToView()
+        guard let data = returnData() else {return}
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.titleLabel.text = data.title
         }
     }
 }
@@ -91,4 +93,6 @@ extension CastCardView: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.setData(from: cellData)
         return cell
     }
+    
+    
 }

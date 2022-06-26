@@ -191,8 +191,14 @@ class DetailViewCell: CYTableViewCell {
         }
         
         castCardView.snp.makeConstraints { make in
-            make.height.equalTo(100)
+            make.height.equalTo(200)
         }
+        
+        let spaceView = UIView()
+        spaceView.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentStack.addArrangedSubview(spaceView)
+        contentStack.setCustomSpacing(40, after: castCardView)
     }
     
     func setData(data: CYDataProtocol?) {

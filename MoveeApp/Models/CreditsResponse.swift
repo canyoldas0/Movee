@@ -23,7 +23,7 @@ struct Cast: Decodable {
     let profilePath: String?
     
     var imageUrl: String {
-        return "https://image.tmdb.org/t/p/w500\(profilePath ?? "")"
+        return "https://image.tmdb.org/t/p/w200\(profilePath ?? "")"
     }
     
     enum CodingKeys: String, CodingKey  {
