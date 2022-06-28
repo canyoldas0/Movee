@@ -7,10 +7,9 @@
 
 import UIKit
 
-class MainViewBuilder {
+class MoviesViewBuilder {
     
-    class func build() -> UIViewController {
-        let viewModel = MoviesViewModel()
+    class func build(with viewModel: MoviesViewModelProtocol = MoviesViewModel()) -> UIViewController {
         let viewController = MoviesViewController(viewModel: viewModel)
         viewController.title = "Movies"
         let navigationVC = UINavigationController(rootViewController: viewController)

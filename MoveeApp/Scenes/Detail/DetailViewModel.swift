@@ -11,7 +11,6 @@ import CYBase
 
 class DetailViewModel {
     
-    
     private var id: Int
     private var detailAPI: DetailNetworkProtocol
     private var cancellables = Set<AnyCancellable>()

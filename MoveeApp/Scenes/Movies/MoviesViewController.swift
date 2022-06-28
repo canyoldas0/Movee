@@ -8,18 +8,34 @@
 import UIKit
 import CYBase
 
-class MoviesViewController: CYViewController<MoviesViewModel> {
+protocol MoviesViewModelProtocol {
+    
+    var popularMovies: [Movie] { get set }
+    var topRatedMovies: [Movie] { get set }
+    var moviesState: MovieListViewStateBlock? { get set}
+    func fetchData()
+    func subscribePopularList(completion: @escaping MovieListViewStateBlock)
+    func getNumberOfRows() -> Int
+    func getItem(at index: Int) -> Movie
+}
+
+class MoviesViewController: UIViewController {
     
     enum MoviesTableViewSection {
         case horizontalCollectionView
         case tableView
     }
     
+    private var viewModel: MoviesViewModelProtocol!
+    
+    convenience init(viewModel: MoviesViewModelProtocol) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     private let tableViewSections: [MoviesTableViewSection] = [.horizontalCollectionView, .tableView]
-    
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +56,7 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
         tableView.registerNib(withIdentifier: ListTableViewCell.identifier)
     }
     
-    private func listenViewModel() {
+    func listenViewModel() {
         
         viewModel.subscribePopularList { [weak self] state in
             switch state {
@@ -52,7 +68,7 @@ class MoviesViewController: CYViewController<MoviesViewModel> {
         }
     }
     
-    private func fireDetailView(with id: Int) {
+    func fireDetailView(with id: Int) {
         let detailVC = DetailViewBuilder.build(with: id,
                                                contentType: .movie)
         navigationController?.pushViewController(detailVC, animated: false)
@@ -108,6 +124,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
             return 140
         }
     }
+    
 }
 
 // MARK: ListCellAction Delegate

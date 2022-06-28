@@ -34,7 +34,10 @@ class CastCollectionViewCell: UICollectionViewCell {
     
     func setData(from data: CastCollectionViewCellData) {
         guard let url = URL(string: data.imageUrl) else {return}
-        imageView.kf.setImage(with: url)
+        imageView.kf.setImage(with: url,
+                              placeholder: UIImage(named: "placeholderPerson"),
+                              options: nil,
+                              completionHandler: nil)
         nameLabel.text = data.name
     }
 }

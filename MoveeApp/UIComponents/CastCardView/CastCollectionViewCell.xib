@@ -16,14 +16,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heartSelected" translatesAutoresizingMaskIntoConstraints="NO" id="XaF-xq-oMm" userLabel="imageView">
-                        <rect key="frame" x="30" y="0.0" width="70" height="70"/>
+                        <rect key="frame" x="30" y="15" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="B2L-KU-GRE"/>
                             <constraint firstAttribute="height" constant="70" id="GX4-mI-loq"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="2C0-LN-giN">
-                        <rect key="frame" x="0.0" y="80" width="130" height="18"/>
+                        <rect key="frame" x="0.0" y="95" width="130" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -32,7 +32,7 @@
             </view>
             <constraints>
                 <constraint firstItem="2C0-LN-giN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7sA-Q6-ReA"/>
-                <constraint firstItem="XaF-xq-oMm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JGE-SQ-WwS"/>
+                <constraint firstItem="XaF-xq-oMm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="JGE-SQ-WwS"/>
                 <constraint firstAttribute="trailing" secondItem="2C0-LN-giN" secondAttribute="trailing" id="h85-K8-uGj"/>
                 <constraint firstItem="XaF-xq-oMm" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ktC-eD-cnu"/>
                 <constraint firstItem="2C0-LN-giN" firstAttribute="top" secondItem="XaF-xq-oMm" secondAttribute="bottom" constant="10" id="y04-wb-1Nd"/>

@@ -13,13 +13,15 @@ struct CastCardViewData {
     let items: [CYDataProtocol]?
 }
 
-class CastCardView: CYBaseView<CastCardViewData> {
+class CastCardView: CYTableViewCell {
+    
+    var data: CastCardViewData?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
-        layout.itemSize = CGSize(width: 130, height: 130)
+        layout.itemSize = CGSize(width: 100, height: 130)
         layout.minimumInteritemSpacing = 5
         let temp = UICollectionView(frame: .zero, collectionViewLayout: layout)
         temp.translatesAutoresizingMaskIntoConstraints = false
@@ -40,11 +42,11 @@ class CastCardView: CYBaseView<CastCardViewData> {
         return temp
     }()
     
-    override func setupViews() {
-        super.setupViews()
-        
-        addSubview(collectionView)
-        addSubview(titleLabel)
+    override func addViewComponents() {
+        super.addViewComponents()
+        backgroundColor = .clear
+        contentView.addSubview(collectionView)
+        contentView.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(24)
@@ -52,15 +54,15 @@ class CastCardView: CYBaseView<CastCardViewData> {
         }
         collectionView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }
     
-    override func loadDataToView() {
-        super.loadDataToView()
-        guard let data = returnData() else {return}
+    func setData(with data: CastCardViewData?) {
+        guard let data = data else {return}
+        self.data = data
         DispatchQueue.main.async {
             self.collectionView.reloadData()
             self.titleLabel.text = data.title
@@ -76,7 +78,7 @@ extension CastCardView: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let data = returnData() else {return 0}
+        guard let data = data else {return 0}
         return data.items?.count ?? 0
     }
     
@@ -86,7 +88,7 @@ extension CastCardView: UICollectionViewDataSource, UICollectionViewDelegate {
             return UICollectionViewCell()
         }
         
-        guard let data = returnData(), let cellData = data.items?[indexPath.row] as? CastCollectionViewCellData else {
+        guard let data = data, let cellData = data.items?[indexPath.row] as? CastCollectionViewCellData else {
             return UICollectionViewCell()
         }
 

@@ -35,7 +35,7 @@ class DetailDataFormatter: DetailDataFormatterProtocol {
         })
         let castData = CastCardViewData(title: "Casts", items: castCellData)
         
-        return DetailViewData(viewData: [DetailViewCellData(imageUrl: detail.imageUrl,
+        return DetailViewData(detailData: [DetailViewCellData(imageUrl: detail.imageUrl,
                                                             score: detail.voteAverage,
                                                             title: detail.title,
                                                             categories: detail.categories,
@@ -45,9 +45,8 @@ class DetailDataFormatter: DetailDataFormatterProtocol {
                                                                                         string: "\(detail.releaseDate ?? "")"),
                                                             description: detail.overview,
                                                             directorData: LabelPackData(contentType: .movie,
-                                                                                        string: credits.crew?.first(where: {$0.isDirector == true})?.name ?? "No data"),
-                                                            castData: castData
-                                                           )])
+                                                                                        string: credits.crew?.first(where: {$0.isDirector == true})?.name ?? "No data"))], castData: [castData])
+                                                          
     }
     
     private func convertForSeries(credits: CreditsResponse, detail: ItemDetailResponse) -> DetailViewData {
@@ -59,7 +58,7 @@ class DetailDataFormatter: DetailDataFormatterProtocol {
         let castData = CastCardViewData(title: "Casts", items: castCellData)
         
         
-        return DetailViewData(viewData: [DetailViewCellData(imageUrl: detail.imageUrl,
+        return DetailViewData(detailData: [DetailViewCellData(imageUrl: detail.imageUrl,
                                                             score: detail.voteAverage,
                                                             title: detail.name,
                                                             categories: detail.categories,
@@ -69,9 +68,8 @@ class DetailDataFormatter: DetailDataFormatterProtocol {
                                                                                         string: "\(detail.getYears() ?? "")"),
                                                             description: detail.overview,
                                                             directorData: LabelPackData(contentType: .movie,
-                                                                                        string: credits.crew?.first(where: {$0.isDirector == true})?.name ?? "No data"),
-                                                            castData: castData
-                                                           )])
+                                                                                        string: credits.crew?.first(where: {$0.isDirector == true})?.name ?? "No data"))],
+                                                            castData: [castData])
     }
     
 }

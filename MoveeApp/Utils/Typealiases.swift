@@ -8,5 +8,5 @@
 import Foundation
 
 typealias VoidBlock = () -> Void
-typealias MovieListViewStateBlock = (ViewState) -> Void
+typealias MovieListViewStateBlock = (ViewState) -> Void 
 typealias ViewStateBlock = (ViewState) -> Void

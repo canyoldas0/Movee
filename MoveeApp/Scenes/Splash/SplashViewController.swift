@@ -30,7 +30,7 @@ class SplashViewController: UIViewController {
     }
     
     private func startApp() {
-        let moviesVC = MainViewBuilder.build()        
+        let moviesVC = MoviesViewBuilder.build()        
         UIApplication.shared.windows.first?.rootViewController = moviesVC
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }

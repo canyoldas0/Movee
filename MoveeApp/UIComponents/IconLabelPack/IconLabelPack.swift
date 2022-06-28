@@ -27,6 +27,8 @@ class IconLabelPack: CYBaseView<IconLabelPackData> {
     private lazy var container: UIStackView = {
         let temp = UIStackView()
         temp.spacing = 5
+        temp.distribution = .equalSpacing
+        temp.alignment = .leading
         temp.translatesAutoresizingMaskIntoConstraints = false
         return temp
     }()
@@ -43,7 +45,6 @@ class IconLabelPack: CYBaseView<IconLabelPackData> {
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.text = "8.5"
         temp.font = .systemFont(ofSize: 15, weight: .regular)
-        temp.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         temp.textColor = .almostBlack
         return temp
     }()

@@ -19,9 +19,7 @@ struct DetailViewCellData: CYDataProtocol {
     let yearData: IconLabelPackData?
     let description: String?
     let directorData: LabelPackData?
-    let castData: CastCardViewData?
 }
-
 
 class DetailViewCell: CYTableViewCell {
     
@@ -78,8 +76,9 @@ class DetailViewCell: CYTableViewCell {
     lazy var timeLabelStack: UIStackView = {
         let temp = UIStackView()
         temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.distribution = .fillProportionally
-        temp.spacing = 15
+        temp.distribution = .equalSpacing
+        temp.spacing = 5
+        temp.alignment = .leading
         return temp
     }()
     
@@ -120,13 +119,6 @@ class DetailViewCell: CYTableViewCell {
         return temp
     }()
     
-    lazy var castCardView: CastCardView = {
-        let temp = CastCardView()
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        return temp
-    }()
-    
-    
     override func addViewComponents() {
         super.addViewComponents()
         
@@ -150,7 +142,6 @@ class DetailViewCell: CYTableViewCell {
         labelStackView.addArrangedSubview(descriptionLabel)
         labelStackView.addArrangedSubview(directorLabel)
         
-        contentStack.addArrangedSubview(castCardView)
         
         contentStack.setCustomSpacing(20, after: labelStackView)
         labelStackView.setCustomSpacing(10, after: categoryLabel)
@@ -189,16 +180,13 @@ class DetailViewCell: CYTableViewCell {
             make.top.equalTo(scoreView.snp.bottom).offset(10)
             make.trailing.equalToSuperview().inset(24)
         }
-        
-        castCardView.snp.makeConstraints { make in
-            make.height.equalTo(200)
-        }
-        
+
         let spaceView = UIView()
         spaceView.translatesAutoresizingMaskIntoConstraints = false
         
         contentStack.addArrangedSubview(spaceView)
-        contentStack.setCustomSpacing(40, after: castCardView)
+        contentStack.setCustomSpacing(20, after: labelStackView)
+        
     }
     
     func setData(data: CYDataProtocol?) {
@@ -216,7 +204,6 @@ class DetailViewCell: CYTableViewCell {
         yearLabel.setData(data: data.yearData)
         descriptionLabel.text = data.description
         directorLabel.setData(data: data.directorData)
-        castCardView.setData(data: data.castData)
     }
 }
 

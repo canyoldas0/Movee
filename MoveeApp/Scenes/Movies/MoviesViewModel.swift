@@ -14,10 +14,10 @@ enum ViewState {
     case failure
 }
 
-final class MoviesViewModel {
+final class MoviesViewModel: MoviesViewModelProtocol {
     
     private let moviesAPI: MoviesNetworkProtocol
-    private var moviesState: MovieListViewStateBlock?
+    var moviesState: MovieListViewStateBlock?
     private var cancellables =  Set<AnyCancellable>()
     
     var popularMovies = [Movie]()
@@ -47,7 +47,6 @@ final class MoviesViewModel {
                   receiveValue: { _ in })
             .store(in: &cancellables)
     }
-    
     
     
     // MARK: -- Vertical TableView Methods
